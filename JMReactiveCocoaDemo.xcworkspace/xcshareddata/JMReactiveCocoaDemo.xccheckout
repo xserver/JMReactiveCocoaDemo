@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>642B98AC-8073-47F8-8703-F0BC94E7A095</string>
+	<key>IDESourceControlProjectName</key>
+	<string>JMReactiveCocoaDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F3AB2AB59B08E83707AB1C913BABF2419E589ABC</key>
+		<string>https://github.com/xserver/JMReactiveCocoaDemo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>JMReactiveCocoaDemo.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F3AB2AB59B08E83707AB1C913BABF2419E589ABC</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/xserver/JMReactiveCocoaDemo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F3AB2AB59B08E83707AB1C913BABF2419E589ABC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F3AB2AB59B08E83707AB1C913BABF2419E589ABC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JMReactiveCocoaDemo</string>
+		</dict>
+	</array>
+</dict>
+</plist>
