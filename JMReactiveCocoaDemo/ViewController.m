@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-
+#import "LoginController.h"
 /* 
  http://yulingtianxia.qiniudn.com/blog/2014/07/29/reactivecocoa/
  https://github.com/jspahrsummers/GroceryList RAC 作者
@@ -57,8 +57,6 @@
  KVO Delegate
  NSArray rac_sequence
  
- 
- 
  @protocol RACSubscriber;
  
  @class RASSingal
@@ -74,7 +72,7 @@
 #import "Apple.h"
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic  ) IBOutlet UITextField *textField;
-@property (strong, nonatomic) IBOutlet UIButton    *button;
+@property (nonatomic, strong) IBOutlet UIButton    *button;
 @property (weak, nonatomic  ) IBOutlet UILabel     *label;
 
 @property (nonatomic, copy  ) NSString    *name;
@@ -82,6 +80,9 @@
 @property (nonatomic, strong) Apple       *apple;
 
 @property (nonatomic, strong) UITableView *table;
+
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+
 @end
 
 @implementation ViewController
@@ -89,16 +90,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [self testLogin];
     
+//    @weakify(self);
+    
+//    [self testSignal];
+//    [self testSubscript];
 //    [self testObject];
 //    [self testFilter];
 
 //    [self testTable];
 //    [self testFilter];
 
-    [self testSignal];
+
     
 //    [_name rac_deallocDisposable]
+}
+
+- (void)testLogin {
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        id ctrl = [[LoginController alloc] init];
+        [self presentViewController:ctrl animated:NO completion:nil];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,57 +122,84 @@
 
 #pragma mark - Signal
 - (void)testSignal {
-//  what is signal ?
-//  RACSignal : RACStream : NSObject
-
-    //  开始时，别用宏，会更清晰
+    
+    //  what is signal ? 开始时，别用宏，会更清晰
     RACSignal *signal = [self.textField rac_valuesForKeyPath:@"text" observer:self];
     [signal subscribeNext:^(id x){
         NSLog(@"subscribeNext   %@", x);
-    }];
-    
-    //  signal 怎么触发
-
+    }]; //  subscribeCompleted
     
     //    [RACObserve(self.textField, text) subscribeNext:^(id x){
     //        NSLog(@"subscribeNext");
     //    }];
     
-    //    [RACObserve(self.textField, text) subscribeCompleted:^(){
-    //        NSLog(@"subscribeCompleted");
-    //    }];
-    
+    //  signal 怎么触发
     @weakify(self);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         @strongify(self);
         self.textField.text = @"aaa";
     });
-
-//    RACSignal *sig = [RACSignal combineLatest:@[
-//                     self.usernameTextField.rac_textSignal,
-//                     self.passwordTextField.rac_textSignal,
-//                     RACObserve(LoginManager.sharedManager, loggingIn),
-//                     RACObserve(self, loggedIn)
-//                     ] reduce:^(NSString *username, NSString *password, NSNumber *loggingIn, NSNumber *loggedIn) {
-//                         return @(username.length > 0 && password.length > 0 && !loggingIn.boolValue && !loggedIn.boolValue);
-//                     }];
-
-   //-----
     
+    //  cold
+    RACSignal *cold = [RACSignal createSignal:^ RACDisposable * (id<RACSubscriber> subscriber) {
+
+        //  什么时候触发这个 send ？
+        [subscriber sendNext:@"这是 cold 的时候 RACSubscriber 发的"];
+//        sendCompleted 和 sendError 二者只能发一个，看顺序，先进先出
+        [subscriber sendCompleted];
+        [subscriber sendError:[NSError errorWithDomain:@"hello, I'm subscriber error!" code:0 userInfo:nil]];
+        
+        return nil; //  返回 RACDisposable
+    }];
     
+    //  hot, cold 被 subscribe 后，hot，激活
+    [cold subscribeNext:^(id x){
+        NSLog(@"%@", x);
+    }];
+    [cold subscribeCompleted:^(){
+        NSLog(@"cold completed");
+    }];
+    
+    [cold subscribeError:^(NSError *error){
+        NSLog(@"%@", error.domain);
+    }];
+}
+
+#pragma mark - Subscript
+- (void)testSubscript {
     /*
      RAC(self.textField, enabled) = signal;
      
      宏展开
      [[RACSubscriptingAssignmentTrampoline alloc] initWithTarget:(self.textField) nilValue:(((void *)0))][@(((void)(__objc_no && ((void)self.textField.enabled, __objc_no)), "enabled"))] = signal;
-
+     
      逗号表达式
      
      意义如下
      [RACSubscriptingAssignmentTrampoline setObject:signal forKeyedSubscript:@"enabled"];
      
      */
-
+    
+    
+//    Signals也可以被用于导出状态。不必观察属性然后设置其他属性来响应这个属性新的值，RAC可以依照signals和操作来表达属性
+    
+//    RAC(_textField, enabled) = [RACSignal
+//                                combineLatest:@[RACObserve(self, password),
+//                                                RACObserve(self, passwordConfirmation)]
+//                                
+//                                reduce:^(NSString *password, NSString *passwordConfirm) {
+//                                    return @([passwordConfirm isEqualToString:password]);
+//                                }];
+    
+    
+    RACSignal *signal = RACObserve(self.textField, text);
+    [signal subscribeNext:^(id x){
+        NSLog(@"testSubscript %@", x);
+    }];
+    
+//    RAC(self.textField, text) = signal;
+    
+    self.textField.text = @"kk";
 }
 
 #pragma mark - Signal 特性

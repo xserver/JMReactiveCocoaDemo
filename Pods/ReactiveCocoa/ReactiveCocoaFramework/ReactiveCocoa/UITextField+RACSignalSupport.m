@@ -19,11 +19,7 @@
 
 - (RACSignal *)rac_textSignal {
 	@weakify(self);
-	return [[[[[RACSignal
-		defer:^{
-			@strongify(self);
-			return [RACSignal return:self];
-		}]
+	return [[[[[RACSignal defer:^{ @strongify(self); return [RACSignal return:self];}]
 		concat:[self rac_signalForControlEvents:UIControlEventEditingChanged | UIControlEventEditingDidBegin]]
 		map:^(UITextField *x) {
 			return x.text;

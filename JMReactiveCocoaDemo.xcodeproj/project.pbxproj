@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BA3DAADE74DFD8A5BEFB1952 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1544D62FA998B2C9456E3699 /* libPods.a */; };
+		D04223881AC64EEE00B32DCE /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = D04223861AC64EEE00B32DCE /* LoginController.m */; };
+		D04223891AC64EEE00B32DCE /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D04223871AC64EEE00B32DCE /* LoginController.xib */; };
 		D0D5822D1AC1340700AB0117 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D5822C1AC1340700AB0117 /* main.m */; };
 		D0D582301AC1340700AB0117 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D5822F1AC1340700AB0117 /* AppDelegate.m */; };
 		D0D582331AC1340700AB0117 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D582321AC1340700AB0117 /* ViewController.m */; };
@@ -32,6 +34,9 @@
 		1544D62FA998B2C9456E3699 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AA5E515FA9E59C259058117 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6781E5205AF9E89BE886C1B4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D04223851AC64EEE00B32DCE /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		D04223861AC64EEE00B32DCE /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		D04223871AC64EEE00B32DCE /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
 		D0D582271AC1340700AB0117 /* JMReactiveCocoaDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JMReactiveCocoaDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D5822B1AC1340700AB0117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0D5822C1AC1340700AB0117 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -112,6 +117,9 @@
 				D0D5822F1AC1340700AB0117 /* AppDelegate.m */,
 				D0D582311AC1340700AB0117 /* ViewController.h */,
 				D0D582321AC1340700AB0117 /* ViewController.m */,
+				D04223851AC64EEE00B32DCE /* LoginController.h */,
+				D04223861AC64EEE00B32DCE /* LoginController.m */,
+				D04223871AC64EEE00B32DCE /* LoginController.xib */,
 				D0D582341AC1340700AB0117 /* Main.storyboard */,
 				D0D582371AC1340700AB0117 /* Images.xcassets */,
 				D0D582391AC1340700AB0117 /* LaunchScreen.xib */,
@@ -231,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0D582361AC1340700AB0117 /* Main.storyboard in Resources */,
+				D04223891AC64EEE00B32DCE /* LoginController.xib in Resources */,
 				D0D5823B1AC1340700AB0117 /* LaunchScreen.xib in Resources */,
 				D0D582381AC1340700AB0117 /* Images.xcassets in Resources */,
 			);
@@ -283,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D04223881AC64EEE00B32DCE /* LoginController.m in Sources */,
 				D0FF25DA1AC5070E00AFDA05 /* Apple.m in Sources */,
 				D0D582331AC1340700AB0117 /* ViewController.m in Sources */,
 				D0D582301AC1340700AB0117 /* AppDelegate.m in Sources */,
