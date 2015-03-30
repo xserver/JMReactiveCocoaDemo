@@ -6,9 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginController">
             <connections>
+                <outlet property="chatTextField" destination="4A5-on-6PY" id="hDm-rE-Lga"/>
                 <outlet property="loginButton" destination="ZST-Wb-rGS" id="j8X-aL-ksv"/>
                 <outlet property="nameTextField" destination="W1B-H7-Y2c" id="dCs-MN-3JF"/>
                 <outlet property="pwdTextField" destination="lWc-WJ-u33" id="0Zh-1H-HwR"/>
+                <outlet property="sendButton" destination="sYp-3c-pSB" id="Hbp-q2-L7X"/>
                 <outlet property="tipsLabel" destination="BVc-ez-lrO" id="KOn-HV-Iwu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -40,8 +42,20 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Chat" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4A5-on-6PY">
+                    <rect key="frame" x="20" y="389" width="97" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYp-3c-pSB">
+                    <rect key="frame" x="152" y="389" width="46" height="30"/>
+                    <state key="normal" title="Send">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="320" y="321"/>
         </view>
     </objects>
 </document>

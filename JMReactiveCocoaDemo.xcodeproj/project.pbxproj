@@ -10,6 +10,10 @@
 		BA3DAADE74DFD8A5BEFB1952 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1544D62FA998B2C9456E3699 /* libPods.a */; };
 		D04223881AC64EEE00B32DCE /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = D04223861AC64EEE00B32DCE /* LoginController.m */; };
 		D04223891AC64EEE00B32DCE /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D04223871AC64EEE00B32DCE /* LoginController.xib */; };
+		D09A167C1AC8E8D00010F4AC /* CommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = D09A167A1AC8E8D00010F4AC /* CommandController.m */; };
+		D09A167D1AC8E8D00010F4AC /* CommandController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09A167B1AC8E8D00010F4AC /* CommandController.xib */; };
+		D09A16821AC8EA290010F4AC /* NSString+EmailAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D09A167F1AC8EA290010F4AC /* NSString+EmailAdditions.m */; };
+		D09A16831AC8EA290010F4AC /* SubscribeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D09A16811AC8EA290010F4AC /* SubscribeViewModel.m */; };
 		D0D5822D1AC1340700AB0117 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D5822C1AC1340700AB0117 /* main.m */; };
 		D0D582301AC1340700AB0117 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D5822F1AC1340700AB0117 /* AppDelegate.m */; };
 		D0D582331AC1340700AB0117 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D582321AC1340700AB0117 /* ViewController.m */; };
@@ -37,6 +41,13 @@
 		D04223851AC64EEE00B32DCE /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		D04223861AC64EEE00B32DCE /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		D04223871AC64EEE00B32DCE /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
+		D09A16791AC8E8D00010F4AC /* CommandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandController.h; sourceTree = "<group>"; };
+		D09A167A1AC8E8D00010F4AC /* CommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandController.m; sourceTree = "<group>"; };
+		D09A167B1AC8E8D00010F4AC /* CommandController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommandController.xib; sourceTree = "<group>"; };
+		D09A167E1AC8EA290010F4AC /* NSString+EmailAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EmailAdditions.h"; sourceTree = "<group>"; };
+		D09A167F1AC8EA290010F4AC /* NSString+EmailAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EmailAdditions.m"; sourceTree = "<group>"; };
+		D09A16801AC8EA290010F4AC /* SubscribeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeViewModel.h; sourceTree = "<group>"; };
+		D09A16811AC8EA290010F4AC /* SubscribeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeViewModel.m; sourceTree = "<group>"; };
 		D0D582271AC1340700AB0117 /* JMReactiveCocoaDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JMReactiveCocoaDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D5822B1AC1340700AB0117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0D5822C1AC1340700AB0117 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -121,11 +132,18 @@
 				D04223861AC64EEE00B32DCE /* LoginController.m */,
 				D04223871AC64EEE00B32DCE /* LoginController.xib */,
 				D0D582341AC1340700AB0117 /* Main.storyboard */,
+				D09A16791AC8E8D00010F4AC /* CommandController.h */,
+				D09A167A1AC8E8D00010F4AC /* CommandController.m */,
+				D09A16801AC8EA290010F4AC /* SubscribeViewModel.h */,
+				D09A16811AC8EA290010F4AC /* SubscribeViewModel.m */,
 				D0D582371AC1340700AB0117 /* Images.xcassets */,
 				D0D582391AC1340700AB0117 /* LaunchScreen.xib */,
 				D0D5822A1AC1340700AB0117 /* Supporting Files */,
 				D0FF25D81AC5070E00AFDA05 /* Apple.h */,
 				D0FF25D91AC5070E00AFDA05 /* Apple.m */,
+				D09A167E1AC8EA290010F4AC /* NSString+EmailAdditions.h */,
+				D09A167F1AC8EA290010F4AC /* NSString+EmailAdditions.m */,
+				D09A167B1AC8E8D00010F4AC /* CommandController.xib */,
 			);
 			path = JMReactiveCocoaDemo;
 			sourceTree = "<group>";
@@ -239,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0D582361AC1340700AB0117 /* Main.storyboard in Resources */,
+				D09A167D1AC8E8D00010F4AC /* CommandController.xib in Resources */,
 				D04223891AC64EEE00B32DCE /* LoginController.xib in Resources */,
 				D0D5823B1AC1340700AB0117 /* LaunchScreen.xib in Resources */,
 				D0D582381AC1340700AB0117 /* Images.xcassets in Resources */,
@@ -295,6 +314,9 @@
 				D04223881AC64EEE00B32DCE /* LoginController.m in Sources */,
 				D0FF25DA1AC5070E00AFDA05 /* Apple.m in Sources */,
 				D0D582331AC1340700AB0117 /* ViewController.m in Sources */,
+				D09A16821AC8EA290010F4AC /* NSString+EmailAdditions.m in Sources */,
+				D09A167C1AC8E8D00010F4AC /* CommandController.m in Sources */,
+				D09A16831AC8EA290010F4AC /* SubscribeViewModel.m in Sources */,
 				D0D582301AC1340700AB0117 /* AppDelegate.m in Sources */,
 				D0D5822D1AC1340700AB0117 /* main.m in Sources */,
 			);
