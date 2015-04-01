@@ -65,6 +65,16 @@
         // filter NO 就不会进来了
         NSLog(@"3 subscribe--- %@  %p", x, x);
     }];
+    
+    
+    RACSignal *validEmailSignal = [self.nameTextField.rac_textSignal map:^id(NSString *value) {
+        return @([value rangeOfString:@"@"].location != NSNotFound);
+    }];
+    
+    RAC(self.loginButton, enabled) = validEmailSignal;
+    RAC(self.nameTextField, textColor) = [validEmailSignal map:^id(id value) {
+        return [value boolValue] ? [UIColor greenColor] : [UIColor redColor];
+    }];
 }
 
 #pragma mark - Combine
