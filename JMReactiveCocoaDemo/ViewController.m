@@ -11,7 +11,18 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "LoginController.h"
 #import "CommandController.h"
+#import "ExampleCtrl.h"
 /* 
+ http://blog.sina.com.cn/s/articlelist_1704064674_0_1.html
+ http://www.zhiquan.me/tags/Functional-Reactive-Programming/
+ http://blog.sunnyxx.com/2014/03/06/rac_1_macros/
+ 
+ 把事件当作对象，基于事件的编程
+ http://blog.zhaojie.me/2009/09/functional-reactive-programming-for-csharp.html
+ 
+ http://limboy.me/image/FRP_ReactiveCocoa_large.png
+ http://blog.csdn.net/xdrt81y/article/details/30624469
+ http://nshipster.cn/reactivecocoa/
  http://yulingtianxia.qiniudn.com/blog/2014/07/29/reactivecocoa/
  https://github.com/jspahrsummers/GroceryList RAC 作者
  https://github.com/ReactiveCocoa/ReactiveCocoaLayout   ReactiveCocoaLayout
@@ -33,6 +44,12 @@
  signal作为local变量时，如果没有被subscribe，那么方法执行完后，该变量会被dealloc。
  signal有被subscribe，那么subscriber会持有该signal，直到signal sendCompleted或sendError时，才会解除持有关系，signal才会被dealloc。
  
+ signal 和 sequence 都是streams，他们共享很多相同的方法。
+ signal 是push驱动的stream，sequence是pull驱动的stream
+ 
+ subscribeNext 和 sendNext 是对应的收与发
+
+ 
  RAC 有哪些功能？
  1、监听视图的变化 UIView
  2、监听属性的变化 NSObject
@@ -48,8 +65,7 @@
  merge    ||
  map      修改
  chaining 串联
-
-
+ 
  
 *对 OC 的扩展
  各个控件 和 UIControlEvents
@@ -72,6 +88,8 @@
  RAC 中 KVO 的操作隐藏在 search NSKeyValueObservingOptions
  RACKVOTrampoline : RACDisposable   observeValueForKeyPath:ofObject:change:context
  */
+
+
 #import "Apple.h"
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic  ) IBOutlet UITextField *textField;
@@ -85,6 +103,7 @@
 @property (nonatomic, strong) UITableView *table;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *commandButton;
 
 @end
 
@@ -93,33 +112,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-//    [self testGestureRecognizer];
-//    NSArray *strings = @[ @"A", @"B", @"C" ];
-//    RACSequence *sequence = [strings.rac_sequence map:^(NSString *str) {
-//        return [str stringByAppendingString:@"_"];
-//    }];
-    NSArray *list = @[@"1", @"22", @"333"];
-    NSArray *result = [self filterArray:list condition:^(NSString *item, BOOL *right){
-        
-        *right = (item.length > 2) ? YES : NO;
-    }];
-    
-    NSLog(@"%@", result);
-    
-    
-    @weakify(self);
-    
 //    [self testSignal];
-    [self testBinding];
-//    [self testSubscript];
+    
+//    [self testGetSetSignal];
+//    [self testSignalColdToHot];
+
+//    [self testDisposable];
+    
+//    [self testBinding];
+
+//    [self testGestureRecognizer];
 //    [self testObject];
 //    [self testFilter];
 
+    
+//    [self testCommand];
 //    [self testButton];
 //    [self testTable];
 //    [self testFilter];
-
-
     
 //    [_name rac_deallocDisposable]
 
@@ -130,109 +140,142 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)openCommandExample:(id)sender {
-
-    id ctrl = [[CommandController alloc] init];
-    [self presentViewController:ctrl animated:NO completion:nil];
-}
-
 #pragma mark - Signal
 - (void)testSignal {
-    @weakify(self);
-    NSLog(@"testSignal1: %@", RACObserve(self.textField, text));
-    NSLog(@"testSignal2: %@", RACObserve(self.textField, text));
-    NSLog(@"testSignal3: %@", RACObserve(self.textField, text));
-    
-    [[RACObserve(self.textField, text) rac_willDeallocSignal] subscribeNext:^(id x){
-        NSLog(@"testSignal dealloc");
-    }];
     //  what is signal ?    signal = KVO + Block;
-
-    //    开始时，别用 RACObserve 宏，会更清晰
-    RACSignal *signal = [self.textField rac_valuesForKeyPath:@"text" observer:self];    //  
-    [signal subscribeNext:^(id x){
-        NSLog(@"subscribeNext   %@", x);
-    }]; //  subscribeCompleted
+    @weakify(self);
     
-//    [RACObserve(self.textField, text) subscribeNext:^(id x){        NSLog(@"subscribeNext");}];
-    _textField.text = @"boy";
+    //  通过 KV 创建一个 signal，接收其变化，然后订制事件。RACObserve
+    RACSignal *signal = [self.textField rac_valuesForKeyPath:@"text" observer:self];
+    [signal subscribeNext:^(id x){   //  subscribeCompleted
+        NSLog(@"testSignal - subscribeNext   %@", x);
+    }];
+    
+    //  UI控件的变化
+    [_textField.rac_textSignal subscribeNext:^(id x) {
+        NSLog(@"%@", x);
+    }];
+    
+    
+    /*
+     // signal 的结果，返回给 左边
+     RAC(self.textField, enabled) = signal; // 将 signal 和 左边的 kv 关联起来
+     
+     宏展开, 逗号表达式
+     [[RACSubscriptingAssignmentTrampoline alloc] initWithTarget:(self.textField) nilValue:(((void *)0))][@(((void)(__objc_no && ((void)self.textField.enabled, __objc_no)), "enabled"))] = signal;
+     
+     意义如下
+     [RACSubscriptingAssignmentTrampoline setObject:signal forKeyedSubscript:@"enabled"];
+
+     RAC(self.outputLabel, text) = self.inputTextField.rac_textSignal;
+     RAC(self.outputLabel, text, @"收到nil时就显示我") = self.inputTextField.rac_textSignal;
+     */
+    
+    //    id didSubscribe =
+    //  怎么驱动这个 signal 2， 貌似思路错了。
+    
+    RACSignal *signal2 = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber){
+        
+        [subscriber sendNext:@"人家正在下载数据"];
+        id data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [subscriber sendNext:@"下载完成，请接收"];
+            [subscriber sendNext:data];
+            [subscriber sendCompleted]; //  触发 disposable
+        });
+        
+        return [RACDisposable disposableWithBlock:^{
+            NSLog(@"clean up");
+        }];
+    }];
+    
+    RACDisposable *disposable = [signal2 subscribeNext:^(id x){
+        //  一订阅就触发 sendNext;
+        if ([x isKindOfClass:[NSString class]]) {
+            NSLog(@"%@", x);
+        }else{
+            NSLog(@"人家是数据");
+        }
+    }];
+    
+    [[signal2 logAll] subscribeNext:^(id x){
+    
+        NSLog(@"******** %@", x);
+    }];
     return;
-
-    
-    //  signal 怎么触发
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        @strongify(self);
-        self.textField.text = @"aaa";
+        [signal2 subscribeNext:^(id x){
+            NSLog(@"%@", x);
+        }];
     });
     
-    //  cold
-    RACSignal *cold = [RACSignal createSignal:^ RACDisposable * (id<RACSubscriber> subscriber) {
+    NSLog(@"%@", disposable.disposed ? @"YES":@"NO");
+//    [disposable dispose];
+    
+//    [_textField.rac_textSignal subscribeNext:^(id x){
+//        //  textField.text 变化，我作为 subscribe 会收到消息
+//    }];
+    
+    return;
+}
 
+- (void)testSignalColdToHot {
+    //  cold
+    RACSignal *signal = [RACSignal createSignal:^ RACDisposable * (id<RACSubscriber> subscriber) {
+        
+        //    一个signal的生命由很多下一个(next)事件和一个错误(error)或完成(completed)事件组成（后两者不同时出现）
+        
         //  什么时候触发这个 send ？
-        [subscriber sendNext:@"这是 cold 的时候 RACSubscriber 发的"];
-//        sendCompleted 和 sendError 二者只能发一个，看顺序，先进先出
+        [subscriber sendNext:@"testSignalColdToHot sendNext 1"];
+        [subscriber sendNext:@"testSignalColdToHot sendNext 2"];
+        
+        //  sendCompleted 和 sendError 二者只能发一个，看顺序，先进先出
         [subscriber sendCompleted];
-        [subscriber sendError:[NSError errorWithDomain:@"hello, I'm subscriber error!" code:0 userInfo:nil]];
+        [subscriber sendError:[NSError errorWithDomain:@"subscriber error!" code:0 userInfo:nil]];
         
         return nil; //  返回 RACDisposable
     }];
     
-    //  hot, cold 被 subscribe 后，hot，激活
-    [cold subscribeNext:^(id x){
-        NSLog(@"%@", x);
-    }];
-    [cold subscribeCompleted:^(){
-        NSLog(@"cold completed");
-    }];
-    
-    [cold subscribeError:^(NSError *error){
-        NSLog(@"%@", error.domain);
-    }];
-}
-
-#pragma mark - Subscript
-- (void)testSubscript {
-    /*
-     RAC(self.textField, enabled) = signal; // 将 signal 和 左边的 kv 关联起来
-     
-     宏展开
-     [[RACSubscriptingAssignmentTrampoline alloc] initWithTarget:(self.textField) nilValue:(((void *)0))][@(((void)(__objc_no && ((void)self.textField.enabled, __objc_no)), "enabled"))] = signal;
-     
-     逗号表达式
-     
-     意义如下
-     [RACSubscriptingAssignmentTrampoline setObject:signal forKeyedSubscript:@"enabled"];
-     
-     */
-    
-    
-//    Signals也可以被用于导出状态。不必观察属性然后设置其他属性来响应这个属性新的值，RAC可以依照signals和操作来表达属性
-    
-//    RAC(_textField, enabled) = [RACSignal
-//                                combineLatest:@[RACObserve(self, password),
-//                                                RACObserve(self, passwordConfirmation)]
-//                                
-//                                reduce:^(NSString *password, NSString *passwordConfirm) {
-//                                    return @([passwordConfirm isEqualToString:password]);
-//                                }];
-    
-    
-    RACSignal *signal = RACObserve(self.textField, text);
+    //  如果没有订阅者 (subscribe) ，signal 就不会执行，被 subscribe 后被激活，cold - hot
     [signal subscribeNext:^(id x){
-        NSLog(@"testSubscript %@", x);
+        NSLog(@"testSignalColdToHot - next %@", x);
+    }];
+    [signal subscribeCompleted:^(){
+        NSLog(@"testSignalColdToHot - completed");
     }];
     
-//    RAC(self.textField, text) = signal;
-    
-    self.textField.text = @"kk";
+    [signal subscribeError:^(NSError *error){
+        NSLog(@"testSignalColdToHot - %@", error.domain);
+    }];
 }
 
 
+-(RACSignal *)urlResults {
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSError *error;
+        NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.devtang.com"]
+                                                    encoding:NSUTF8StringEncoding
+                                                       error:&error];
+        NSLog(@"download");
+        if (!result) {
+            [subscriber sendError:error];
+        } else {
+            [subscriber sendNext:result];
+            [subscriber sendCompleted];
+        }
+        return [RACDisposable disposableWithBlock:^{
+            NSLog(@"clean up");
+        }];
+    }];
+    
+}
+
+#pragma mark - RACSubject
+- (void)testSubject {
+    NSArray *array;
+//    array.rac_sequence
+
+}
 
 #pragma mark - Object
 - (void)testObject {
@@ -356,13 +399,53 @@
     }];
 }
 
+#pragma mark - RACScheduler
+//  schedul 对线程的封装
+- (void)testScheduler {
+    
+    RAC(self, label.text) = [[[RACSignal interval:1 onScheduler:[RACScheduler currentScheduler]] startWith:[NSDate date]] map:^id (NSDate *value) {
+        NSLog(@"value:%@", value);
+        
+        NSCalendarUnit cu = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+        NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:cu fromDate:value];
+        return [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)dateComponents.hour, (long)dateComponents.minute, (long)dateComponents.second];
+    }];
+
+//    [RACSignal deliverOn] 切换线程
+    
+    @weakify(self);
+    [[RACScheduler scheduler] schedule:^{
+        sleep(1);
+        //pretend we are uploading to a server on a backround thread...
+        //dont ever put sleep in your code
+        //upload player & points...
+        
+        [[RACScheduler mainThreadScheduler] schedule:^{
+            //this creates a reference to weak self ( @weakify(self); )
+            //makes sure self isn't retained
+            //TODO: shouldn't reference a UI element in the view model. probably need an upload signal signal
+            @strongify(self);
+            NSString *msg = @"testScheduler";
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Successfull" message:msg delegate:nil
+                                                  cancelButtonTitle:@"ok" otherButtonTitles:nil];
+            [alert show];
+        }];
+    }];
+
+}
 #pragma mark - NSArray 等集合
 - (void)testCollection {
-    
-    //    RACSequence : RACStream
-    
-    _array = @[@"A", @"B"];
-//    _array.rac_sequence = nil;
+
+}
+
+
+#pragma mark - RACSequence
+- (void)testSequence {
+    //    NSArray *strings = @[ @"A", @"B", @"C" ];
+    //    RACSequence *sequence = [strings.rac_sequence map:^(NSString *str) {
+    //        return [str stringByAppendingString:@"_"];
+    //    }];
 }
 
 #pragma mark - Lifting
@@ -476,38 +559,26 @@
     return cell;
 }
 
+- (void)testCommand {
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ide];
-//    if (cell == nil) {
-//        UIButton *btn;
-//        [cell addSubview:btn];
-//        
-//        [[[btn rac_signalForControlEvents:UIControlEventTouchUpInside]
-//          takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x){
-//            NSLog(@"cell button passed");
-//        }];
-//        
-//        [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x){
-//            NSLog(@"cell button passed");
-//        }];
-//    }
-//    
-//    return cell;
-//}
+    _commandButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id input){
+        NSLog(@"button passed");
+        
+        //  如何创建一个 signal 并返回
+        return [RACSignal empty];
+    }];
+}
 
-- (NSArray *)filterArray:(NSArray *)list condition:(void (^)(NSString *x, BOOL *right))block {
+- (IBAction)openExampleController:(id)sender {
     
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:5];
-    BOOL right;
-    for (int i = 0; i < list.count; i++) {
-        block(list[i], &right);
-        if (right) {
-            [result addObject:@(i)];
-        }
-    }
+    id ctrl = [[ExampleCtrl alloc] init];
+    [self presentViewController:ctrl animated:NO completion:nil];
+}
+
+- (IBAction)openCommandExample:(id)sender {
     
-    return result;
+    id ctrl = [[CommandController alloc] init];
+    [self presentViewController:ctrl animated:NO completion:nil];
 }
 @end
 

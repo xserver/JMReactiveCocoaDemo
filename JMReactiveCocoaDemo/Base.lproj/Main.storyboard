@@ -21,14 +21,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ulm-LV-e9x">
-                                <rect key="frame" x="16" y="217" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dj-bg-NqF">
-                                <rect key="frame" x="121" y="208" width="54" height="30"/>
+                                <rect key="frame" x="162" y="252" width="54" height="30"/>
                                 <state key="normal" title="Change">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -51,11 +45,33 @@
                                     <action selector="openCommandExample:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KPh-P3-jzB"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCS-o1-qHL">
+                                <rect key="frame" x="16" y="390" width="72" height="30"/>
+                                <state key="normal" title="Command">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GES-12-gYz">
+                                <rect key="frame" x="16" y="434" width="200" height="30"/>
+                                <state key="normal" title="ExampleController">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openExampleController:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="hqb-rK-UKM"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ulm-LV-e9x">
+                                <rect key="frame" x="23" y="183" width="316" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="button" destination="0dj-bg-NqF" id="t8i-9p-dsv"/>
+                        <outlet property="commandButton" destination="sCS-o1-qHL" id="PsG-W8-ZZj"/>
                         <outlet property="label" destination="Ulm-LV-e9x" id="kQm-gM-o1D"/>
                         <outlet property="loginButton" destination="nWR-7p-5Pk" id="2OJ-Ht-4EQ"/>
                         <outlet property="textField" destination="Xhf-M2-O6x" id="coW-sv-PfB"/>
