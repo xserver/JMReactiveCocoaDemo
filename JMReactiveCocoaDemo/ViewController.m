@@ -2,7 +2,7 @@
 //  ViewController.m
 //  JMReactiveCocoaDemo
 //
-//  Created by 积木.xserver.Github on 15/3/24.
+//  Created by xserver on 15/3/24.
 //  Copyright (c) 2015年 pitaya. All rights reserved.
 //  英语=原罪
 
@@ -12,6 +12,8 @@
 #import "LoginController.h"
 #import "CommandController.h"
 #import "ExampleCtrl.h"
+#import "DelegateController.h"
+
 /*
  http://segmentfault.com/a/1190000000408492
  http://blog.sina.com.cn/s/articlelist_1704064674_0_1.html
@@ -621,5 +623,10 @@
     id ctrl = [[CommandController alloc] init];
     [self presentViewController:ctrl animated:NO completion:nil];
 }
+
+- (IBAction)openDelegateExample:(id)sender {
+        [self presentViewController:[[DelegateController alloc] init] animated:NO completion:nil];
+}
+
 @end
 

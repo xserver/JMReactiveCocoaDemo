@@ -25,6 +25,8 @@
     // Do any additional setup after loading the view from its nib.
     [self testReplay];
 //    [self testReplayLazily];
+    
+//    _textField.delegate
 }
 
 #pragma mark - replay
@@ -44,7 +46,6 @@
 //    lazily 有人 subscriber 的时候再执行，replay 和 replayLast 是先执行，lazily 的意思正式如此
     
     NSLog(@"注意 start 和 signal 中的 subscriber 执行顺序");
-    
     [numberSignal subscribeNext:^(id x) {
         NSLog(@"A %@", x);
     }];
