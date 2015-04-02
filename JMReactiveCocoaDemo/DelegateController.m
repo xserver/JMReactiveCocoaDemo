@@ -54,7 +54,7 @@
         //    objc_setAssociatedObject(self.textField, _cmd, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
-
+//    监听协议方法- (RACSignal *)rac_signalForSelector:(SEL)selector fromProtocol:(Protocol *)protocol
 
 }
 

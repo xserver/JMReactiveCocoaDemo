@@ -142,4 +142,29 @@
 //     }];
 }
 
+- (void)xx {
+    @weakify(self);    
+//    id numberLimit = @(60);
+//    
+//    RACSignal *timeSignal = [[[[[RACSignal interval:1.0f onScheduler:[RACScheduler mainThreadScheduler]]
+//                                take:numberLimit]
+//                               startWith:@(1)]
+//                              map:^id(NSDate *date) {
+//                                @strongify(self);
+//                                if (number == 0) {
+//                                    [self.timeButton setTitle:@"重新发送" forState:UIControlStateNormal];
+//                                    return @YES;
+//                                }
+//                                else{
+//                                    self.timeButton.titleLabel.text = [NSString stringWithFormat:@"%d", number--];
+//                                    return @NO;
+//                                }
+//                              }] takeUntil:self.rac_willDeallocSignal];
+//    
+//    self.loginButton.rac_command = [[RACCommand alloc]initWithEnabled:timeSignal signalBlock:^RACSignal *(id input) {
+//        number = numberLimit;
+//        return timeSignal;
+//    }];
+}
+
 @end

@@ -63,6 +63,7 @@
 		D0B206B81ACCEA3A00FCD638 /* StreamController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamController.h; sourceTree = "<group>"; };
 		D0B206B91ACCEA3A00FCD638 /* StreamController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamController.m; sourceTree = "<group>"; };
 		D0B206BA1ACCEA3A00FCD638 /* StreamController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreamController.xib; sourceTree = "<group>"; };
+		D0B206BF1ACD0D2100FCD638 /* README.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = README.h; sourceTree = "<group>"; };
 		D0D582271AC1340700AB0117 /* JMReactiveCocoaDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JMReactiveCocoaDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D5822B1AC1340700AB0117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0D5822C1AC1340700AB0117 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -168,6 +169,7 @@
 				D0B206B81ACCEA3A00FCD638 /* StreamController.h */,
 				D0B206B91ACCEA3A00FCD638 /* StreamController.m */,
 				D0B206BA1ACCEA3A00FCD638 /* StreamController.xib */,
+				D0B206BF1ACD0D2100FCD638 /* README.h */,
 			);
 			path = JMReactiveCocoaDemo;
 			sourceTree = "<group>";

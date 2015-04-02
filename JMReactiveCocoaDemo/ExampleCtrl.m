@@ -133,6 +133,7 @@
     //                                   }];
     //
     //  takeUntil 一直取 UITextField rac_textSignal 就是
+    //  takeUntil:self.rac_willDeallocSignal , 一直取，直到 dealloc
 }
 #pragma mark - filter
 - (void)distinctUntilChanged {

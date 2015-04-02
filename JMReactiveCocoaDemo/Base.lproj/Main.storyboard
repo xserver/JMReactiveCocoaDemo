@@ -46,10 +46,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCS-o1-qHL">
-                                <rect key="frame" x="16" y="390" width="72" height="30"/>
-                                <state key="normal" title="Command">
+                                <rect key="frame" x="16" y="390" width="117" height="30"/>
+                                <state key="normal" title="StreamController">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="openStreamController:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="A9C-Ju-hht"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GES-12-gYz">
                                 <rect key="frame" x="16" y="434" width="200" height="30"/>
@@ -80,7 +83,6 @@
                     </view>
                     <connections>
                         <outlet property="button" destination="0dj-bg-NqF" id="t8i-9p-dsv"/>
-                        <outlet property="commandButton" destination="sCS-o1-qHL" id="PsG-W8-ZZj"/>
                         <outlet property="label" destination="Ulm-LV-e9x" id="kQm-gM-o1D"/>
                         <outlet property="loginButton" destination="nWR-7p-5Pk" id="2OJ-Ht-4EQ"/>
                         <outlet property="textField" destination="Xhf-M2-O6x" id="coW-sv-PfB"/>
