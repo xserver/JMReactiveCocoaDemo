@@ -11,7 +11,7 @@
 @implementation Apple
 
 - (void)protectMyself; {
-    self.my = self;
+//    self.my = self;
 }
 
 - (void)dealloc {

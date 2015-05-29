@@ -4,152 +4,158 @@
 //
 //  Created by xserver on 15/3/24.
 //  Copyright (c) 2015年 pitaya. All rights reserved.
-//  英语=原罪
+//
 
 #import "ViewController.h"
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "LoginController.h"
-#import "CommandController.h"
+#import "CommandCtrl.h"
 #import "ExampleCtrl.h"
 #import "DelegateController.h"
 #import "StreamController.h"
-
+#import "Blah.h"
 #import "Apple.h"
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic  ) IBOutlet UITextField *textField;
-@property (nonatomic, strong) IBOutlet UIButton    *button;
-@property (weak, nonatomic  ) IBOutlet UILabel     *label;
 
-@property (nonatomic, copy  ) NSString    *name;
-@property (nonatomic, strong) NSArray     *array;
-@property (nonatomic, strong) Apple       *apple;
+@interface ViewController ()
+@property (nonatomic, weak  ) IBOutlet UITextField *textField;
+@property (nonatomic, weak) IBOutlet UIButton    *button;
+@property (nonatomic, weak  ) IBOutlet UILabel     *label;
+@property (nonatomic, weak  ) IBOutlet UIButton    *loginButton;
 
-@property (nonatomic, strong) UITableView *table;
 
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
-@property (weak, nonatomic) IBOutlet UIButton *commandButton;
+@property (nonatomic, copy  ) NSString *name;
+@property (nonatomic, strong) NSArray  *array;
+@property (nonatomic, strong) Apple    *apple;
+
+@property (nonatomic, strong) NSMutableString *releaseObj;
+@property (nonatomic, strong) RACDisposable *disposable;
 
 @end
 
 @implementation ViewController
+{
+    Blah *blah;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-//    [self testSignal];
-//    [self testSignalColdToHot];
-//    [self testSequence];
     
-//    [self testBinding];
+//    [self testMutableArrayChange];
+    
+//    [self signalColdToHot];
+//    [self packEvent];
+    
+//    [self testSequence];
+//    [self bindingData];
+    
 
 //    [self testGestureRecognizer];
-//    [self testObject];
-//    [self testFilter];
+//    [self objectSignalCategory];
 
-    
-//    [self testCommand];
 //    [self testButton];
-//    [self testTable];
-//    [self testFilter];
     
 //    [_name rac_deallocDisposable]
 
-    _loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^(id button) {
-        id ctrl = [[LoginController alloc] init];
-        [self presentViewController:ctrl animated:NO completion:nil];
-        return [RACSignal empty];
-    }];
+//    _loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^(id button) {
+//        id ctrl = [[LoginController alloc] init];
+//        [self presentViewController:ctrl animated:NO completion:nil];
+//        return [RACSignal empty];
+//    }];
 }
 
 #pragma mark - Signal
-- (void)testSignal {
-    //  what is signal ?    signal = KVO + Block;
-    @weakify(self);
-    
+- (void)signalCreate {
     //  通过 KV 创建一个 signal，接收其变化，然后订制事件。RACObserve
     RACSignal *signal = [self.textField rac_valuesForKeyPath:@"text" observer:self];
+    
+    RACObserve(self.textField, text);   //  两者等同
+    
     [signal subscribeNext:^(id x){   //  subscribeCompleted
-        NSLog(@"testSignal - subscribeNext   %@", x);
+        NSLog(@"signalCreate - subscribeNext   %@", x);
     }];
     
     //  UI控件的变化
     [_textField.rac_textSignal subscribeNext:^(id x) {
-        NSLog(@"%@", x);
+        NSLog(@"signalCreate = %@", x);
     }];
+}
+
+- (void)signalRelate {
+    RACSignal *signal = nil;
     
-    
-    /*
      // signal 的结果，返回给 左边
      RAC(self.textField, enabled) = signal; // 将 signal 和 左边的 kv 关联起来
-     
+    
+    /*
      宏展开, 逗号表达式
      [[RACSubscriptingAssignmentTrampoline alloc] initWithTarget:(self.textField) nilValue:(((void *)0))][@(((void)(__objc_no && ((void)self.textField.enabled, __objc_no)), "enabled"))] = signal;
      
      意义如下
      [RACSubscriptingAssignmentTrampoline setObject:signal forKeyedSubscript:@"enabled"];
-
+     
      RAC(self.outputLabel, text) = self.inputTextField.rac_textSignal;
      RAC(self.outputLabel, text, @"收到nil时就显示我") = self.inputTextField.rac_textSignal;
      */
-    
-    //    id didSubscribe =
-    //  怎么驱动这个 signal 2， 貌似思路错了。
-    
-    RACSignal *signal2 = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber){
+}
+- (void)packEvent {
+    RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        [subscriber sendNext:@"人家正在下载数据"];
-        id data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://www.baidu.com"]];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [subscriber sendNext:@"下载完成，请接收"];
+        [subscriber sendNext:@"准备下载"];
+        
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), queue, ^{
+            id data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+            [subscriber sendNext:@"下载完成，请准备接收"];
             [subscriber sendNext:data];
             [subscriber sendCompleted]; //  触发 disposable
         });
         
         return [RACDisposable disposableWithBlock:^{
-            NSLog(@"clean up");
+            //  do something ? 这里是返回一个可以 干掉 task 的 block
+            NSLog(@"?? clean up");
         }];
     }];
     
-    RACDisposable *disposable = [signal2 subscribeNext:^(id x){
+    self.disposable = [signal subscribeNext:^(id x) {
+        
         //  一订阅就触发 sendNext;
         if ([x isKindOfClass:[NSString class]]) {
-            NSLog(@"%@", x);
+            NSLog(@"pack subscribeNext = %@", x);
         }else{
-            NSLog(@"人家是数据");
+            NSLog(@"pack subscribeNext = 人家是数据");
         }
     }];
     
-    [[signal2 logAll] subscribeNext:^(id x){
+    [signal subscribeCompleted:^(){
+        NSLog(@"subscribeCompleted 完成");
+    }];
     
-        NSLog(@"******** %@", x);
+    //  log ?
+    [[signal logAll] subscribeNext:^(id x){
+        NSLog(@"\n******** %@\n\n", x);
     }];
     return;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [signal2 subscribeNext:^(id x){
-            NSLog(@"%@", x);
-        }];
-    });
-    
-    NSLog(@"%@", disposable.disposed ? @"YES":@"NO");
-//    [disposable dispose];
-    
-//    [_textField.rac_textSignal subscribeNext:^(id x){
-//        //  textField.text 变化，我作为 subscribe 会收到消息
-//    }];
-    
+
+}
+- (void)whatIsSignal {
+    //  what is signal ?
+    //  signal = KVO + Block;  &&  Block  = Function;
+    //         = KVO + Function;
     return;
 }
 
-- (void)testSignalColdToHot {
+- (void)signalColdToHot {
+    
     //  cold
     RACSignal *signal = [RACSignal createSignal:^ RACDisposable * (id<RACSubscriber> subscriber) {
         
-        //    一个signal的生命由很多下一个(next)事件和一个错误(error)或完成(completed)事件组成（后两者不同时出现）
-        
-        //  什么时候触发这个 send ？
-        [subscriber sendNext:@"testSignalColdToHot sendNext 1"];
-        [subscriber sendNext:@"testSignalColdToHot sendNext 2"];
+        //  一个signal的生命由很多下一个(next)事件和一个错误(error)或完成(completed)事件组成（后两者不同时出现）
+        //  什么时候触发这些 send ？如同 socket::accept->fork, subscribe = connect
+        [subscriber sendNext:@"signalColdToHot sendNext 1"];
+        [subscriber sendNext:@"signalColdToHot sendNext 2"];
         
         //  sendCompleted 和 sendError 二者只能发一个，看顺序，先进先出
         [subscriber sendCompleted];
@@ -160,36 +166,15 @@
     
     //  如果没有订阅者 (subscribe) ，signal 就不会执行，被 subscribe 后被激活，cold - hot
     [signal subscribeNext:^(id x){
-        NSLog(@"testSignalColdToHot - next %@", x);
+        NSLog(@"signalColdToHot - next %@", x);
     }];
     [signal subscribeCompleted:^(){
-        NSLog(@"testSignalColdToHot - completed");
+        NSLog(@"signalColdToHot - completed");
     }];
     
     [signal subscribeError:^(NSError *error){
-        NSLog(@"testSignalColdToHot - %@", error.domain);
+        NSLog(@"signalColdToHot - %@", error.domain);
     }];
-}
-
-
--(RACSignal *)urlResults {
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSError *error;
-        NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.devtang.com"]
-                                                    encoding:NSUTF8StringEncoding
-                                                       error:&error];
-        NSLog(@"download");
-        if (!result) {
-            [subscriber sendError:error];
-        } else {
-            [subscriber sendNext:result];
-            [subscriber sendCompleted];
-        }
-        return [RACDisposable disposableWithBlock:^{
-            NSLog(@"clean up");
-        }];
-    }];
-    
 }
 
 #pragma mark - RACSubject
@@ -201,24 +186,34 @@
 }
 
 #pragma mark - Object
-- (void)testObject {
-    //  将要 dealloc
+- (void)objectSignalCategory {
+
+    //  使用 string 测试会有问题，string 没有立刻执行，copy || string 的内存管理 ？
+
+    @autoreleasepool {
+        _releaseObj = [NSMutableString stringWithFormat:@"xx, %@", @"aaa"];
+        [[_releaseObj rac_willDeallocSignal] subscribeCompleted:^(){
+            
+            NSLog(@"xxx release");
+        }];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            _releaseObj = nil;
+        });
+    }
     
-//    NSArray *array = @[@"foo"];
-//    [[array rac_willDeallocSignal] subscribeCompleted:^{
-//        NSLog(@"oops, i will be gone");
+    @autoreleasepool {
+        NSString *str = @"hello";
+        [[str rac_willDeallocSignal] subscribeCompleted:^(){
+            NSLog(@"aaaa");
+        }];
+        str = nil;
+    }
+    
+//    _array = @[@"~~~~"];
+//    [[_array rac_willDeallocSignal] subscribeCompleted:^(){
+//        NSLog(@"我已经 dealloc 啦：%@", _array);
 //    }];
-//    array = nil;
-//    
-//    return;
-    
-    _array = @[@"~~~~"];    //  使用 string 测试会有问题，string 没有立刻执行，copy || string 的内存管理 ？
-    NSLog(@"%@", _array);
-    
-    [[_array rac_willDeallocSignal] subscribeCompleted:^(){
-        NSLog(@"我已经 dealloc 啦：%@", _array);
-    }];
-    _array = nil;
+//    _array = nil;
 }
 
 #pragma mark - select
@@ -286,8 +281,7 @@
     //    _button.rac_command.executionSignals
 //        _button.rac_command.errors subscribeNext:<#^(id x)nextBlock#>
     
-    RACSignal *signal = [RACObserve(self, name)
-                         map:^id(id x){
+    RACSignal *signal = [RACObserve(self, name) map:^id(id x){
                              return @"";
                          }];
     
@@ -435,103 +429,29 @@
     [self rac_liftSelector:@selector(doA:withB:) withSignals:signalA, signalB, nil];
 }
 
-- (void)doA:(NSString *)A withB:(NSString *)B
-{
+- (void)doA:(NSString *)A withB:(NSString *)B {
     NSLog(@"A:%@\nB:%@", A, B);
 }
 
 #pragma mark - Binding
-- (void)testBinding {
+- (void)bindingData {
     
-    @weakify(self);
-    //Start Binding our properties
     RAC(self.textField, text) = [RACObserve(self, name) distinctUntilChanged];
     
     [[self.textField.rac_textSignal distinctUntilChanged] subscribeNext:^(NSString *x) {
         //this creates a reference to self that when used with @weakify(self);
         //makes sure self isn't retained
-        @strongify(self);
-//        self.name = x;
         NSLog(@"xxxx %@", x);
     }];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //  Model 改变后，反映到 View
-        self.name = @"testBinding ---";
+        self.name = @"bindingData 111";
     });
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.name = @"testBinding aaa";
+        self.name = @"bindingData 222";
     });
-}
-
-#pragma mark - protect
-- (void)testProtectMyself {
-    _apple = [[Apple alloc] init];
-    _apple.name = @"积木";
-    //    [_apple protectMyself];
-    
-    NSLog(@"%@  %@", _apple, _apple.name);
-    [[_apple rac_willDeallocSignal] subscribeCompleted:^(){
-        NSLog(@"Apple 被释放啦 %@", _apple);
-    }];
-    _apple = nil;
-}
-
-#pragma mark - Table
-- (UITableView *)table {
-    if (_table == nil) {
-        _table = [[UITableView alloc] initWithFrame:CGRectMake(20, 80, 200, 200)];
-        _table.dataSource = self;
-        _table.delegate = self;
-//        _table.backgroundColor = [UIColor brownColor];
-    }
-    return _table;
-}
-
-- (void)testTable {
-    [self.view addSubview:self.table];
-    
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ide = @"~~";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ide];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ide];
-        cell.contentView.backgroundColor = [UIColor greenColor];
-        
-        UIButton *btn = [UIButton buttonWithType:0];
-        btn.frame = CGRectMake(100, 4, 80, 36);
-        btn.backgroundColor = [UIColor purpleColor];
-        [cell addSubview:btn];
-        
-        [[[btn rac_signalForControlEvents:UIControlEventTouchUpInside]
-          takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x){
-            NSLog(@"cell button passed");
-        }];
-        
-        [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x){
-            NSLog(@"cell button passed");
-        }];
-    }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
-    return cell;
-}
-
-- (void)testCommand {
-
-    _commandButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id input){
-        NSLog(@"button passed");
-        
-        //  如何创建一个 signal 并返回
-        return [RACSignal empty];
-    }];
 }
 
 - (IBAction)openExampleController:(id)sender {
@@ -541,7 +461,7 @@
 }
 
 - (IBAction)openCommandExample:(id)sender {
-    [self presentViewController:CommandController.new animated:NO completion:nil];
+    [self presentViewController:CommandCtrl.new animated:NO completion:nil];
 }
 
 - (IBAction)openDelegateExample:(id)sender {
@@ -552,5 +472,25 @@
     [self presentViewController:[[StreamController alloc] init] animated:NO completion:nil];
 }
 
+- (void)testMutableArrayChange {
+    blah = [[Blah alloc] init];
+    NSLog(@"0000  %@", blah.arrayProperty);
+    
+    RACSignal *changeSignal = [blah rac_valuesAndChangesForKeyPath:@keypath(blah, arrayProperty)
+                                                           options:NSKeyValueObservingOptionNew| NSKeyValueObservingOptionOld
+                                                          observer:nil];
+    
+    [changeSignal subscribeNext:^(RACTuple *x){
+        NSArray *wholeArray = x.first;
+        NSDictionary *changeDictionary = x.second;
+        
+        NSLog(@"wholeArray  %@", wholeArray);
+        NSLog(@"changeDictionary    %@", changeDictionary);
+    }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [blah change];
+    });
+}
 @end
 

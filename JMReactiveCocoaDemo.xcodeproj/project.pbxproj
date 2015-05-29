@@ -12,14 +12,18 @@
 		D03356BC1ACAEEA400AAFA49 /* ExampleCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03356BA1ACAEEA400AAFA49 /* ExampleCtrl.xib */; };
 		D04223881AC64EEE00B32DCE /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = D04223861AC64EEE00B32DCE /* LoginController.m */; };
 		D04223891AC64EEE00B32DCE /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D04223871AC64EEE00B32DCE /* LoginController.xib */; };
-		D09A167C1AC8E8D00010F4AC /* CommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = D09A167A1AC8E8D00010F4AC /* CommandController.m */; };
-		D09A167D1AC8E8D00010F4AC /* CommandController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09A167B1AC8E8D00010F4AC /* CommandController.xib */; };
+		D05E918F1B18539D0027C2D6 /* FunctionalBasicCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D05E918E1B18539D0027C2D6 /* FunctionalBasicCtrl.m */; };
+		D06BDBAA1B184BC9007735A7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = D06BDBA91B184BC9007735A7 /* README.md */; };
+		D06BDBAD1B1850A8007735A7 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06BDBAC1B1850A8007735A7 /* TableController.m */; };
+		D09A167C1AC8E8D00010F4AC /* CommandCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D09A167A1AC8E8D00010F4AC /* CommandCtrl.m */; };
+		D09A167D1AC8E8D00010F4AC /* CommandCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09A167B1AC8E8D00010F4AC /* CommandCtrl.xib */; };
 		D09A16821AC8EA290010F4AC /* NSString+EmailAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D09A167F1AC8EA290010F4AC /* NSString+EmailAdditions.m */; };
 		D09A16831AC8EA290010F4AC /* SubscribeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D09A16811AC8EA290010F4AC /* SubscribeViewModel.m */; };
 		D0B206B61ACCDEBB00FCD638 /* DelegateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B206B41ACCDEBB00FCD638 /* DelegateController.m */; };
 		D0B206B71ACCDEBB00FCD638 /* DelegateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B206B51ACCDEBB00FCD638 /* DelegateController.xib */; };
 		D0B206BB1ACCEA3A00FCD638 /* StreamController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B206B91ACCEA3A00FCD638 /* StreamController.m */; };
 		D0B206BC1ACCEA3A00FCD638 /* StreamController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B206BA1ACCEA3A00FCD638 /* StreamController.xib */; };
+		D0CB59B11B0DDFE5003689F5 /* Blah.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB59B01B0DDFE5003689F5 /* Blah.m */; };
 		D0D5822D1AC1340700AB0117 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D5822C1AC1340700AB0117 /* main.m */; };
 		D0D582301AC1340700AB0117 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D5822F1AC1340700AB0117 /* AppDelegate.m */; };
 		D0D582331AC1340700AB0117 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D582321AC1340700AB0117 /* ViewController.m */; };
@@ -50,9 +54,14 @@
 		D04223851AC64EEE00B32DCE /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		D04223861AC64EEE00B32DCE /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		D04223871AC64EEE00B32DCE /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
-		D09A16791AC8E8D00010F4AC /* CommandController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandController.h; sourceTree = "<group>"; };
-		D09A167A1AC8E8D00010F4AC /* CommandController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandController.m; sourceTree = "<group>"; };
-		D09A167B1AC8E8D00010F4AC /* CommandController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommandController.xib; sourceTree = "<group>"; };
+		D05E918D1B18539D0027C2D6 /* FunctionalBasicCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionalBasicCtrl.h; sourceTree = "<group>"; };
+		D05E918E1B18539D0027C2D6 /* FunctionalBasicCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionalBasicCtrl.m; sourceTree = "<group>"; };
+		D06BDBA91B184BC9007735A7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D06BDBAB1B1850A8007735A7 /* TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableController.h; sourceTree = "<group>"; };
+		D06BDBAC1B1850A8007735A7 /* TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableController.m; sourceTree = "<group>"; };
+		D09A16791AC8E8D00010F4AC /* CommandCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandCtrl.h; sourceTree = "<group>"; };
+		D09A167A1AC8E8D00010F4AC /* CommandCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandCtrl.m; sourceTree = "<group>"; };
+		D09A167B1AC8E8D00010F4AC /* CommandCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommandCtrl.xib; sourceTree = "<group>"; };
 		D09A167E1AC8EA290010F4AC /* NSString+EmailAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EmailAdditions.h"; sourceTree = "<group>"; };
 		D09A167F1AC8EA290010F4AC /* NSString+EmailAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EmailAdditions.m"; sourceTree = "<group>"; };
 		D09A16801AC8EA290010F4AC /* SubscribeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeViewModel.h; sourceTree = "<group>"; };
@@ -63,7 +72,8 @@
 		D0B206B81ACCEA3A00FCD638 /* StreamController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamController.h; sourceTree = "<group>"; };
 		D0B206B91ACCEA3A00FCD638 /* StreamController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamController.m; sourceTree = "<group>"; };
 		D0B206BA1ACCEA3A00FCD638 /* StreamController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreamController.xib; sourceTree = "<group>"; };
-		D0B206BF1ACD0D2100FCD638 /* README.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = README.h; sourceTree = "<group>"; };
+		D0CB59AF1B0DDFE5003689F5 /* Blah.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blah.h; sourceTree = "<group>"; };
+		D0CB59B01B0DDFE5003689F5 /* Blah.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Blah.m; sourceTree = "<group>"; };
 		D0D582271AC1340700AB0117 /* JMReactiveCocoaDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JMReactiveCocoaDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D5822B1AC1340700AB0117 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0D5822C1AC1340700AB0117 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -120,6 +130,7 @@
 		D0D5821E1AC1340700AB0117 = {
 			isa = PBXGroup;
 			children = (
+				D06BDBA91B184BC9007735A7 /* README.md */,
 				D0D582291AC1340700AB0117 /* JMReactiveCocoaDemo */,
 				D0D582431AC1340700AB0117 /* JMReactiveCocoaDemoTests */,
 				D0D582281AC1340700AB0117 /* Products */,
@@ -144,12 +155,19 @@
 				D0D5822F1AC1340700AB0117 /* AppDelegate.m */,
 				D0FF25D81AC5070E00AFDA05 /* Apple.h */,
 				D0FF25D91AC5070E00AFDA05 /* Apple.m */,
-				D09A16791AC8E8D00010F4AC /* CommandController.h */,
-				D09A167A1AC8E8D00010F4AC /* CommandController.m */,
-				D09A167B1AC8E8D00010F4AC /* CommandController.xib */,
+				D0CB59AF1B0DDFE5003689F5 /* Blah.h */,
+				D0CB59B01B0DDFE5003689F5 /* Blah.m */,
+				D09A16791AC8E8D00010F4AC /* CommandCtrl.h */,
+				D09A167A1AC8E8D00010F4AC /* CommandCtrl.m */,
+				D09A167B1AC8E8D00010F4AC /* CommandCtrl.xib */,
+				D0B206B31ACCDEBB00FCD638 /* DelegateController.h */,
+				D0B206B41ACCDEBB00FCD638 /* DelegateController.m */,
+				D0B206B51ACCDEBB00FCD638 /* DelegateController.xib */,
 				D03356B81ACAEEA400AAFA49 /* ExampleCtrl.h */,
 				D03356B91ACAEEA400AAFA49 /* ExampleCtrl.m */,
 				D03356BA1ACAEEA400AAFA49 /* ExampleCtrl.xib */,
+				D05E918D1B18539D0027C2D6 /* FunctionalBasicCtrl.h */,
+				D05E918E1B18539D0027C2D6 /* FunctionalBasicCtrl.m */,
 				D0D582371AC1340700AB0117 /* Images.xcassets */,
 				D0D582391AC1340700AB0117 /* LaunchScreen.xib */,
 				D04223851AC64EEE00B32DCE /* LoginController.h */,
@@ -158,18 +176,16 @@
 				D0D582341AC1340700AB0117 /* Main.storyboard */,
 				D09A167E1AC8EA290010F4AC /* NSString+EmailAdditions.h */,
 				D09A167F1AC8EA290010F4AC /* NSString+EmailAdditions.m */,
-				D09A16801AC8EA290010F4AC /* SubscribeViewModel.h */,
-				D09A16811AC8EA290010F4AC /* SubscribeViewModel.m */,
-				D0D5822A1AC1340700AB0117 /* Supporting Files */,
-				D0D582311AC1340700AB0117 /* ViewController.h */,
-				D0D582321AC1340700AB0117 /* ViewController.m */,
-				D0B206B31ACCDEBB00FCD638 /* DelegateController.h */,
-				D0B206B41ACCDEBB00FCD638 /* DelegateController.m */,
-				D0B206B51ACCDEBB00FCD638 /* DelegateController.xib */,
 				D0B206B81ACCEA3A00FCD638 /* StreamController.h */,
 				D0B206B91ACCEA3A00FCD638 /* StreamController.m */,
 				D0B206BA1ACCEA3A00FCD638 /* StreamController.xib */,
-				D0B206BF1ACD0D2100FCD638 /* README.h */,
+				D09A16801AC8EA290010F4AC /* SubscribeViewModel.h */,
+				D09A16811AC8EA290010F4AC /* SubscribeViewModel.m */,
+				D0D5822A1AC1340700AB0117 /* Supporting Files */,
+				D06BDBAB1B1850A8007735A7 /* TableController.h */,
+				D06BDBAC1B1850A8007735A7 /* TableController.m */,
+				D0D582311AC1340700AB0117 /* ViewController.h */,
+				D0D582321AC1340700AB0117 /* ViewController.m */,
 			);
 			path = JMReactiveCocoaDemo;
 			sourceTree = "<group>";
@@ -284,7 +300,7 @@
 			files = (
 				D0B206B71ACCDEBB00FCD638 /* DelegateController.xib in Resources */,
 				D0D582361AC1340700AB0117 /* Main.storyboard in Resources */,
-				D09A167D1AC8E8D00010F4AC /* CommandController.xib in Resources */,
+				D09A167D1AC8E8D00010F4AC /* CommandCtrl.xib in Resources */,
 				D04223891AC64EEE00B32DCE /* LoginController.xib in Resources */,
 				D0D5823B1AC1340700AB0117 /* LaunchScreen.xib in Resources */,
 				D0B206BC1ACCEA3A00FCD638 /* StreamController.xib in Resources */,
@@ -343,11 +359,15 @@
 				D0B206B61ACCDEBB00FCD638 /* DelegateController.m in Sources */,
 				D04223881AC64EEE00B32DCE /* LoginController.m in Sources */,
 				D0FF25DA1AC5070E00AFDA05 /* Apple.m in Sources */,
+				D05E918F1B18539D0027C2D6 /* FunctionalBasicCtrl.m in Sources */,
 				D0B206BB1ACCEA3A00FCD638 /* StreamController.m in Sources */,
+				D06BDBAA1B184BC9007735A7 /* README.md in Sources */,
 				D03356BB1ACAEEA400AAFA49 /* ExampleCtrl.m in Sources */,
 				D0D582331AC1340700AB0117 /* ViewController.m in Sources */,
 				D09A16821AC8EA290010F4AC /* NSString+EmailAdditions.m in Sources */,
-				D09A167C1AC8E8D00010F4AC /* CommandController.m in Sources */,
+				D06BDBAD1B1850A8007735A7 /* TableController.m in Sources */,
+				D09A167C1AC8E8D00010F4AC /* CommandCtrl.m in Sources */,
+				D0CB59B11B0DDFE5003689F5 /* Blah.m in Sources */,
 				D09A16831AC8EA290010F4AC /* SubscribeViewModel.m in Sources */,
 				D0D582301AC1340700AB0117 /* AppDelegate.m in Sources */,
 				D0D5822D1AC1340700AB0117 /* main.m in Sources */,
