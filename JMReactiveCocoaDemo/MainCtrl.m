@@ -1,12 +1,12 @@
 //
-//  ViewController.m
+//  MainCtrl.m
 //  JMReactiveCocoaDemo
 //
-//  Created by xserver on 15/3/24.
+//  Created by xserver on 15/6/1.
 //  Copyright (c) 2015年 pitaya. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainCtrl.h"
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "LoginController.h"
@@ -18,10 +18,10 @@
 #import "Blah.h"
 #import "Apple.h"
 
-@interface ViewController ()
+@interface MainCtrl ()<UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, strong) UITableView *tab;
 @property (nonatomic, weak  ) IBOutlet UITextField *textField;
-@property (nonatomic, weak  ) IBOutlet UILabel     *label;
-@property (nonatomic, weak  ) IBOutlet UIButton    *loginButton;
+@property (nonatomic, strong) NSArray *list;
 
 @property (nonatomic, copy  ) NSString *name;
 @property (nonatomic, strong) NSArray  *array;
@@ -32,7 +32,7 @@
 
 @end
 
-@implementation ViewController
+@implementation MainCtrl
 {
     Blah *blah;
 }
@@ -40,25 +40,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     
-//    [self testMutableArrayChange];
+    self.list = @[
+                  @"LoginController",
+                  @"ExampleCtrl",
+                  @"CommandCtrl",
+                  @"DelegateController",
+                  @"StreamController",
+                  @"FilterCtrl"
+                  ];
+    [self.view addSubview:self.tab];
+    //    [self testMutableArrayChange];
     
-//    [self signalColdToHot];
-//    [self packEvent];
+    //    [self signalColdToHot];
+    //    [self packEvent];
     
-//    [self testSequence];
-//    [self objectSignalCategory];
-
-//    [self testButton];
+    //    [self testSequence];
+    //    [self objectSignalCategory];
     
-//    [_name rac_deallocDisposable]
-
-//    _loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^(id button) {
-//        id ctrl = [[LoginController alloc] init];
-//        [self presentViewController:ctrl animated:NO completion:nil];
-//        return [RACSignal empty];
-//    }];
+    //    [_name rac_deallocDisposable]
 }
 
 #pragma mark - Signal
@@ -81,8 +81,8 @@
 - (void)signalRelate {
     RACSignal *signal = nil;
     
-     // signal 的结果，返回给 左边
-     RAC(self.textField, enabled) = signal; // 将 signal 和 左边的 kv 关联起来
+    // signal 的结果，返回给 左边
+    RAC(self.textField, enabled) = signal; // 将 signal 和 左边的 kv 关联起来
     
     /*
      宏展开, 逗号表达式
@@ -133,7 +133,7 @@
         NSLog(@"\n******** %@\n\n", x);
     }];
     return;
-
+    
 }
 - (void)whatIsSignal {
     //  what is signal ?
@@ -174,9 +174,9 @@
 
 #pragma mark - Object
 - (void)objectSignalCategory {
-
+    
     //  使用 string 测试会有问题，string 没有立刻执行，copy || string 的内存管理 ？
-
+    
     @autoreleasepool {
         _releaseObj = [NSMutableString stringWithFormat:@"xx, %@", @"aaa"];
         [[_releaseObj rac_willDeallocSignal] subscribeCompleted:^(){
@@ -196,16 +196,16 @@
         str = nil;
     }
     
-//    _array = @[@"~~~~"];
-//    [[_array rac_willDeallocSignal] subscribeCompleted:^(){
-//        NSLog(@"我已经 dealloc 啦：%@", _array);
-//    }];
-//    _array = nil;
+    //    _array = @[@"~~~~"];
+    //    [[_array rac_willDeallocSignal] subscribeCompleted:^(){
+    //        NSLog(@"我已经 dealloc 啦：%@", _array);
+    //    }];
+    //    _array = nil;
 }
 
 #pragma mark - select
 - (void)testSelector {
-
+    
     //  当selector执行完时，会sendNext
     RACDisposable *disposable = [[self rac_signalForSelector:@selector(test)] subscribeNext:^(id value){
         NSLog(@"我要 hook test 这个方法");
@@ -220,18 +220,18 @@
 
 #pragma mark - Notification
 - (void)testNotification {
-
+    
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"sky call" object:nil]
      subscribeNext:^(NSNotification *notification) {
          NSLog(@"sky call - Notification Received");
-    }];
+     }];
 }
 
 #pragma mark - Lifting
 - (void)test {
     
     RACSignal *signalA = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [subscriber sendNext:@"A"]; //  2秒后 sendNext
         });
@@ -254,29 +254,7 @@
 }
 
 
-#pragma mark - 
-- (IBAction)openExampleController:(id)sender {
-    
-    id ctrl = [[ExampleCtrl alloc] init];
-    [self presentViewController:ctrl animated:NO completion:nil];
-}
-
-- (IBAction)openCommandExample:(id)sender {
-    [self presentViewController:CommandCtrl.new animated:NO completion:nil];
-}
-
-- (IBAction)openDelegateExample:(id)sender {
-    [self presentViewController:[[DelegateController alloc] init] animated:NO completion:nil];
-}
-
-- (IBAction)openStreamController:(id)sender {
-    [self presentViewController:[[StreamController alloc] init] animated:NO completion:nil];
-}
-
-- (IBAction)openFilterController:(id)sender {
-    [self presentViewController:[[FilterCtrl alloc] init] animated:NO completion:nil];
-}
-
+#pragma mark -
 - (void)testMutableArrayChange {
     blah = [[Blah alloc] init];
     NSLog(@"0000  %@", blah.arrayProperty);
@@ -297,5 +275,52 @@
         [blah change];
     });
 }
-@end
 
+#pragma mark - Create Table
+static NSString *kCellIdentifier = @"listcell";
+- (UITableView *)tab {
+    
+    if (_tab == nil) {
+        CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        _tab = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+        _tab.dataSource = self;
+        _tab.delegate = self;
+        _tab.separatorStyle = UITableViewCellSelectionStyleNone;
+        
+        _tab.sectionIndexColor = [UIColor blueColor];
+        _tab.sectionIndexBackgroundColor = [UIColor whiteColor];
+        
+        _tab.sectionIndexTrackingBackgroundColor = [UIColor greenColor];
+        _tab.separatorColor = [UIColor purpleColor];
+        
+        [_tab registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellIdentifier];
+    }
+    
+    return _tab;
+}
+
+#pragma mark - UITableView DataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.list.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
+    
+    cell.textLabel.text = [self.list objectAtIndex:indexPath.row];
+    return cell;
+}
+
+#pragma mark - UITableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *name = cell.textLabel.text;
+    [self.navigationController pushViewController:[[NSClassFromString(name) alloc] init] animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44;
+}
+@end

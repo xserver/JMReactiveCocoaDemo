@@ -226,9 +226,9 @@
     }] subscribeNext:^(id x) {
         NSLog(@"only 2 and 3 will be print: %@", x);
     }];
-    
-    
 }
+
+
 @end
 
 

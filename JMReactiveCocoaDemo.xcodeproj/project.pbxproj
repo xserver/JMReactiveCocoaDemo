@@ -18,6 +18,8 @@
 		D0110F441B1C53A900AAE584 /* SchedulerCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0110F421B1C53A900AAE584 /* SchedulerCtrl.xib */; };
 		D0110F481B1C546B00AAE584 /* SequenceCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D0110F461B1C546B00AAE584 /* SequenceCtrl.m */; };
 		D0110F491B1C546B00AAE584 /* SequenceCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0110F471B1C546B00AAE584 /* SequenceCtrl.xib */; };
+		D0110F4D1B1C60E400AAE584 /* MainCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D0110F4B1B1C60E400AAE584 /* MainCtrl.m */; };
+		D0110F4E1B1C60E400AAE584 /* MainCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0110F4C1B1C60E400AAE584 /* MainCtrl.xib */; };
 		D03356BB1ACAEEA400AAFA49 /* ExampleCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D03356B91ACAEEA400AAFA49 /* ExampleCtrl.m */; };
 		D03356BC1ACAEEA400AAFA49 /* ExampleCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03356BA1ACAEEA400AAFA49 /* ExampleCtrl.xib */; };
 		D04223881AC64EEE00B32DCE /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = D04223861AC64EEE00B32DCE /* LoginController.m */; };
@@ -36,8 +38,6 @@
 		D0CB59B11B0DDFE5003689F5 /* Blah.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB59B01B0DDFE5003689F5 /* Blah.m */; };
 		D0D5822D1AC1340700AB0117 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D5822C1AC1340700AB0117 /* main.m */; };
 		D0D582301AC1340700AB0117 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D5822F1AC1340700AB0117 /* AppDelegate.m */; };
-		D0D582331AC1340700AB0117 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D582321AC1340700AB0117 /* ViewController.m */; };
-		D0D582361AC1340700AB0117 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0D582341AC1340700AB0117 /* Main.storyboard */; };
 		D0D582381AC1340700AB0117 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0D582371AC1340700AB0117 /* Images.xcassets */; };
 		D0D5823B1AC1340700AB0117 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0D582391AC1340700AB0117 /* LaunchScreen.xib */; };
 		D0D582471AC1340700AB0117 /* JMReactiveCocoaDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D582461AC1340700AB0117 /* JMReactiveCocoaDemoTests.m */; };
@@ -73,6 +73,9 @@
 		D0110F451B1C546B00AAE584 /* SequenceCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceCtrl.h; sourceTree = "<group>"; };
 		D0110F461B1C546B00AAE584 /* SequenceCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceCtrl.m; sourceTree = "<group>"; };
 		D0110F471B1C546B00AAE584 /* SequenceCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SequenceCtrl.xib; sourceTree = "<group>"; };
+		D0110F4A1B1C60E400AAE584 /* MainCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCtrl.h; sourceTree = "<group>"; };
+		D0110F4B1B1C60E400AAE584 /* MainCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCtrl.m; sourceTree = "<group>"; };
+		D0110F4C1B1C60E400AAE584 /* MainCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainCtrl.xib; sourceTree = "<group>"; };
 		D03356B81ACAEEA400AAFA49 /* ExampleCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleCtrl.h; sourceTree = "<group>"; };
 		D03356B91ACAEEA400AAFA49 /* ExampleCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleCtrl.m; sourceTree = "<group>"; };
 		D03356BA1ACAEEA400AAFA49 /* ExampleCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExampleCtrl.xib; sourceTree = "<group>"; };
@@ -104,9 +107,6 @@
 		D0D5822C1AC1340700AB0117 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D0D5822E1AC1340700AB0117 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D0D5822F1AC1340700AB0117 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D0D582311AC1340700AB0117 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D0D582321AC1340700AB0117 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		D0D582351AC1340700AB0117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0D582371AC1340700AB0117 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D0D5823A1AC1340700AB0117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D0D582401AC1340700AB0117 /* JMReactiveCocoaDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JMReactiveCocoaDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,18 +176,12 @@
 		D0D582291AC1340700AB0117 /* JMReactiveCocoaDemo */ = {
 			isa = PBXGroup;
 			children = (
-				D0110F3B1B1C52F400AAE584 /* SubjectCtrl.h */,
-				D0110F3C1B1C52F400AAE584 /* SubjectCtrl.m */,
-				D0110F3D1B1C52F400AAE584 /* SubjectCtrl.xib */,
 				D0D5822E1AC1340700AB0117 /* AppDelegate.h */,
 				D0D5822F1AC1340700AB0117 /* AppDelegate.m */,
 				D0FF25D81AC5070E00AFDA05 /* Apple.h */,
 				D0FF25D91AC5070E00AFDA05 /* Apple.m */,
 				D0CB59AF1B0DDFE5003689F5 /* Blah.h */,
 				D0CB59B01B0DDFE5003689F5 /* Blah.m */,
-				D0110F451B1C546B00AAE584 /* SequenceCtrl.h */,
-				D0110F461B1C546B00AAE584 /* SequenceCtrl.m */,
-				D0110F471B1C546B00AAE584 /* SequenceCtrl.xib */,
 				D09A16791AC8E8D00010F4AC /* CommandCtrl.h */,
 				D09A167A1AC8E8D00010F4AC /* CommandCtrl.m */,
 				D09A167B1AC8E8D00010F4AC /* CommandCtrl.xib */,
@@ -197,35 +191,41 @@
 				D03356B81ACAEEA400AAFA49 /* ExampleCtrl.h */,
 				D03356B91ACAEEA400AAFA49 /* ExampleCtrl.m */,
 				D03356BA1ACAEEA400AAFA49 /* ExampleCtrl.xib */,
+				D0110F2E1B1C50FD00AAE584 /* FilterCtrl.h */,
+				D0110F2F1B1C50FD00AAE584 /* FilterCtrl.m */,
+				D0110F301B1C50FD00AAE584 /* FilterCtrl.xib */,
 				D05E918D1B18539D0027C2D6 /* FunctionalBasicCtrl.h */,
 				D05E918E1B18539D0027C2D6 /* FunctionalBasicCtrl.m */,
+				D0110F331B1C528100AAE584 /* GestureCtrl.h */,
+				D0110F341B1C528100AAE584 /* GestureCtrl.m */,
+				D0110F351B1C528100AAE584 /* GestureCtrl.xib */,
 				D0D582371AC1340700AB0117 /* Images.xcassets */,
 				D0D582391AC1340700AB0117 /* LaunchScreen.xib */,
 				D04223851AC64EEE00B32DCE /* LoginController.h */,
 				D04223861AC64EEE00B32DCE /* LoginController.m */,
 				D04223871AC64EEE00B32DCE /* LoginController.xib */,
-				D0D582341AC1340700AB0117 /* Main.storyboard */,
 				D09A167E1AC8EA290010F4AC /* NSString+EmailAdditions.h */,
 				D09A167F1AC8EA290010F4AC /* NSString+EmailAdditions.m */,
+				D0110F401B1C53A900AAE584 /* SchedulerCtrl.h */,
+				D0110F411B1C53A900AAE584 /* SchedulerCtrl.m */,
+				D0110F421B1C53A900AAE584 /* SchedulerCtrl.xib */,
+				D0110F451B1C546B00AAE584 /* SequenceCtrl.h */,
+				D0110F461B1C546B00AAE584 /* SequenceCtrl.m */,
+				D0110F471B1C546B00AAE584 /* SequenceCtrl.xib */,
 				D0B206B81ACCEA3A00FCD638 /* StreamController.h */,
 				D0B206B91ACCEA3A00FCD638 /* StreamController.m */,
 				D0B206BA1ACCEA3A00FCD638 /* StreamController.xib */,
+				D0110F3B1B1C52F400AAE584 /* SubjectCtrl.h */,
+				D0110F3C1B1C52F400AAE584 /* SubjectCtrl.m */,
+				D0110F3D1B1C52F400AAE584 /* SubjectCtrl.xib */,
 				D09A16801AC8EA290010F4AC /* SubscribeViewModel.h */,
 				D09A16811AC8EA290010F4AC /* SubscribeViewModel.m */,
 				D0D5822A1AC1340700AB0117 /* Supporting Files */,
 				D06BDBAB1B1850A8007735A7 /* TableController.h */,
 				D06BDBAC1B1850A8007735A7 /* TableController.m */,
-				D0D582311AC1340700AB0117 /* ViewController.h */,
-				D0D582321AC1340700AB0117 /* ViewController.m */,
-				D0110F2E1B1C50FD00AAE584 /* FilterCtrl.h */,
-				D0110F2F1B1C50FD00AAE584 /* FilterCtrl.m */,
-				D0110F301B1C50FD00AAE584 /* FilterCtrl.xib */,
-				D0110F331B1C528100AAE584 /* GestureCtrl.h */,
-				D0110F341B1C528100AAE584 /* GestureCtrl.m */,
-				D0110F351B1C528100AAE584 /* GestureCtrl.xib */,
-				D0110F401B1C53A900AAE584 /* SchedulerCtrl.h */,
-				D0110F411B1C53A900AAE584 /* SchedulerCtrl.m */,
-				D0110F421B1C53A900AAE584 /* SchedulerCtrl.xib */,
+				D0110F4A1B1C60E400AAE584 /* MainCtrl.h */,
+				D0110F4B1B1C60E400AAE584 /* MainCtrl.m */,
+				D0110F4C1B1C60E400AAE584 /* MainCtrl.xib */,
 			);
 			path = JMReactiveCocoaDemo;
 			sourceTree = "<group>";
@@ -339,7 +339,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0B206B71ACCDEBB00FCD638 /* DelegateController.xib in Resources */,
-				D0D582361AC1340700AB0117 /* Main.storyboard in Resources */,
 				D09A167D1AC8E8D00010F4AC /* CommandCtrl.xib in Resources */,
 				D0110F321B1C50FD00AAE584 /* FilterCtrl.xib in Resources */,
 				D04223891AC64EEE00B32DCE /* LoginController.xib in Resources */,
@@ -347,6 +346,7 @@
 				D0D5823B1AC1340700AB0117 /* LaunchScreen.xib in Resources */,
 				D0110F441B1C53A900AAE584 /* SchedulerCtrl.xib in Resources */,
 				D0B206BC1ACCEA3A00FCD638 /* StreamController.xib in Resources */,
+				D0110F4E1B1C60E400AAE584 /* MainCtrl.xib in Resources */,
 				D0D582381AC1340700AB0117 /* Images.xcassets in Resources */,
 				D0110F371B1C528100AAE584 /* GestureCtrl.xib in Resources */,
 				D03356BC1ACAEEA400AAFA49 /* ExampleCtrl.xib in Resources */,
@@ -412,7 +412,6 @@
 				D0B206BB1ACCEA3A00FCD638 /* StreamController.m in Sources */,
 				D06BDBAA1B184BC9007735A7 /* README.md in Sources */,
 				D03356BB1ACAEEA400AAFA49 /* ExampleCtrl.m in Sources */,
-				D0D582331AC1340700AB0117 /* ViewController.m in Sources */,
 				D09A16821AC8EA290010F4AC /* NSString+EmailAdditions.m in Sources */,
 				D06BDBAD1B1850A8007735A7 /* TableController.m in Sources */,
 				D09A167C1AC8E8D00010F4AC /* CommandCtrl.m in Sources */,
@@ -421,6 +420,7 @@
 				D09A16831AC8EA290010F4AC /* SubscribeViewModel.m in Sources */,
 				D0D582301AC1340700AB0117 /* AppDelegate.m in Sources */,
 				D0D5822D1AC1340700AB0117 /* main.m in Sources */,
+				D0110F4D1B1C60E400AAE584 /* MainCtrl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,14 +443,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D0D582341AC1340700AB0117 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D0D582351AC1340700AB0117 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D0D582391AC1340700AB0117 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

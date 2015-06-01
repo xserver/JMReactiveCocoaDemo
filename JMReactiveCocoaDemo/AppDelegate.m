@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
+#import "MainCtrl.h"
 @interface AppDelegate ()
-
+@property (nonatomic, strong) MainCtrl *main;
 @end
 
 @implementation AppDelegate
@@ -17,6 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    _main = [[MainCtrl alloc] init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:_main];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
