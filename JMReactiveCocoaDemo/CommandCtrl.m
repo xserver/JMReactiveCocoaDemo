@@ -15,7 +15,6 @@
 #import <Masonry/Masonry.h>
 
 
-
 @interface CommandCtrl ()
 @property(nonatomic, strong) SubscribeViewModel *viewModel;
 
@@ -23,6 +22,8 @@
 @property(nonatomic, strong) UIButton *subscribeButton;
 @property(nonatomic, strong) UILabel *statusLabel;
 @property (nonatomic, strong  ) UIButton    *commandButton;
+@property (nonatomic, strong) UIButton *button;
+@property (nonatomic, copy) NSString *name;
 @end
 
 @implementation CommandCtrl
@@ -51,6 +52,37 @@
     [self.view addSubview:self.emailTextField];
     [self.view addSubview:self.subscribeButton];
     [self.view addSubview:self.statusLabel];
+}
+
+- (void)testButton {
+    
+    _button.rac_command = [[RACCommand alloc] initWithSignalBlock:^(id button) {
+        NSLog(@"button was pressed!");
+        return [RACSignal empty];
+    }];
+    
+    //    _button.rac_command.executing
+    //    _button.rac_command.executionSignals
+    //        _button.rac_command.errors subscribeNext:<#^(id x)nextBlock#>
+    
+    RACSignal *signal = [RACObserve(self, name) map:^id(id x){
+        return @"";
+    }];
+    
+    //    _button.rac_command = [[RACCommand alloc] initWithEnabled:signal
+    //                                                  signalBlock:^RACSignal *(id input){
+    //                                                      return [RACSignal empty];
+    //                                                  }];
+    
+    // combine  组合
+    //    RACSignal combineLatest:<#(id<NSFastEnumeration>)#> reduce:<#^id(void)reduceBlock#>
+    //    [_button rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:<#(RACSignal *)#>
+    
+    
+    //  针对 UIControl 事件的 Signal
+    [[_button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x){
+        NSLog(@"events");
+    }];
 }
 
 - (void)defineLayout {

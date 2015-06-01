@@ -14,15 +14,14 @@
 #import "ExampleCtrl.h"
 #import "DelegateController.h"
 #import "StreamController.h"
+#import "FilterCtrl.h"
 #import "Blah.h"
 #import "Apple.h"
 
 @interface ViewController ()
 @property (nonatomic, weak  ) IBOutlet UITextField *textField;
-@property (nonatomic, weak) IBOutlet UIButton    *button;
 @property (nonatomic, weak  ) IBOutlet UILabel     *label;
 @property (nonatomic, weak  ) IBOutlet UIButton    *loginButton;
-
 
 @property (nonatomic, copy  ) NSString *name;
 @property (nonatomic, strong) NSArray  *array;
@@ -49,10 +48,6 @@
 //    [self packEvent];
     
 //    [self testSequence];
-//    [self bindingData];
-    
-
-//    [self testGestureRecognizer];
 //    [self objectSignalCategory];
 
 //    [self testButton];
@@ -177,14 +172,6 @@
     }];
 }
 
-#pragma mark - RACSubject
-- (void)testSubject {
-    RACSubject *subject = [RACSubject subject];
-    [subject sendNext:@"xxx"];
-//    array.rac_sequence
-
-}
-
 #pragma mark - Object
 - (void)objectSignalCategory {
 
@@ -231,82 +218,6 @@
     [disposable dispose];
 }
 
-#pragma mark - 控件
-- (void)testView {
-    //  change 后立马调用，针对 text
-    [RACObserve(self.textField, text) subscribeNext:^(id x){
-        NSLog(@"2--- %@", x);
-    }];
-    
-    [RACObserve(self.textField, text) subscribeNext:^(id x){
-        NSLog(@"2.1--- %@", x);
-    } completed:^(){
-        NSLog(@"2.2 completed");
-    }];
-    
-    //  针对 view 里面的内容
-    [self.textField.rac_textSignal subscribeNext:^(id x){
-        NSLog(@"4--- %@", x);
-    }];
-}
-
-#pragma mark - 手势 UIGestureRecognizer
-- (void)testGestureRecognizer {
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] init];
-    tapGesture.numberOfTapsRequired = 2;
-    [self.view addGestureRecognizer:tapGesture];
-    
-    [[tapGesture rac_gestureSignal] subscribeNext:^(id x) {
-//        [self.viewModel.likeCommand execute:nil];
-        NSLog(@"testGestureRecognizer  %@", [x class]);
-    }];
-    
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] init];
-    [self.view addGestureRecognizer:longPress];
-    [longPress.rac_gestureSignal subscribeNext:^(id x) {
-        NSLog(@"%@", [x class]);
-    }];
-}
-
-#pragma mark - UIControl RACCommand
-- (void)testButton {
-
-    _button.rac_command = [[RACCommand alloc] initWithSignalBlock:^(id button) {
-        NSLog(@"button was pressed!");
-        return [RACSignal empty];
-    }];
-
-    //    _button.rac_command.executing
-    //    _button.rac_command.executionSignals
-//        _button.rac_command.errors subscribeNext:<#^(id x)nextBlock#>
-    
-    RACSignal *signal = [RACObserve(self, name) map:^id(id x){
-                             return @"";
-                         }];
-    
-//    _button.rac_command = [[RACCommand alloc] initWithEnabled:signal
-//                                                  signalBlock:^RACSignal *(id input){
-//                                                      return [RACSignal empty];
-//                                                  }];
-    
-    // combine  组合
-    //    RACSignal combineLatest:<#(id<NSFastEnumeration>)#> reduce:<#^id(void)reduceBlock#>
-//    [_button rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:<#(RACSignal *)#>
-    
-    
-    //  针对 UIControl 事件的 Signal
-    [[_button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x){
-        NSLog(@"events");
-    }];
-}
-
-- (IBAction)changeButtonAction:(id)sender {
-    
-    NSLog(@"%@", _textField.text);
-    _textField.text = @"123";
-}
-
 #pragma mark - Notification
 - (void)testNotification {
 
@@ -314,97 +225,6 @@
      subscribeNext:^(NSNotification *notification) {
          NSLog(@"sky call - Notification Received");
     }];
-}
-
-#pragma mark - RACScheduler
-//  schedul 对线程的封装
-- (void)testScheduler {
-    
-    RAC(self, label.text) = [[[RACSignal interval:1 onScheduler:[RACScheduler currentScheduler]] startWith:[NSDate date]] map:^id (NSDate *value) {
-        NSLog(@"value:%@", value);
-        
-        NSCalendarUnit cu = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-        NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:cu fromDate:value];
-        return [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)dateComponents.hour, (long)dateComponents.minute, (long)dateComponents.second];
-    }];
-
-//    [RACSignal deliverOn] 切换线程
-    
-    @weakify(self);
-    [[RACScheduler scheduler] schedule:^{
-        sleep(1);
-        //pretend we are uploading to a server on a backround thread...
-        //dont ever put sleep in your code
-        //upload player & points...
-        
-        [[RACScheduler mainThreadScheduler] schedule:^{
-            //this creates a reference to weak self ( @weakify(self); )
-            //makes sure self isn't retained
-            //TODO: shouldn't reference a UI element in the view model. probably need an upload signal signal
-            @strongify(self);
-            NSString *msg = @"testScheduler";
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Successfull" message:msg delegate:nil
-                                                  cancelButtonTitle:@"ok" otherButtonTitles:nil];
-            [alert show];
-        }];
-    }];
-
-}
-#pragma mark - NSArray 等集合
-- (void)testCollection {
-
-}
-
-
-#pragma mark - RACSequence
-- (void)testSequence {
-    
-//    NSArray *array = @[ @"A", @"B", @"C" ];
-//    RACSequence *sequence = [array.rac_sequence map:^(NSString *str) {
-//        NSLog(@"item = %@", str);
-//        return [str stringByAppendingString:@"_"];
-//    }];
-//    NSLog(@"%@", [sequence array]);
-    
-    NSArray *array = @[@(1), @(2), @(3)];
-
-    NSLog(@"%@", [[[array rac_sequence] map:^id(id value){
-        return @(pow([value integerValue], 2));
-    }] array]);
-    
-    NSLog(@"%@", [[[array rac_sequence] filter:^BOOL(id value){
-        return [value integerValue] % 2 == 0;
-    }] array]);
-    
-    NSLog(@"%@", [[[array rac_sequence] map:^id(id value) {
-        return [value stringValue];
-    }] foldLeftWithStart:@"--" reduce:^id(id accumulator, id value) {
-        
-        NSLog(@"：：%@", accumulator);
-        return [accumulator stringByAppendingString:value];
-    }]);
-}
-
-#pragma mark - Concatenating
-- (void)testConcat {
-    RACSequence *letters = [@"A B C D E F G H I" componentsSeparatedByString:@" "].rac_sequence;
-    RACSequence *numbers = [@"1 2 3 4 5 6 7 8 9" componentsSeparatedByString:@" "].rac_sequence;
-    
-    // Contains: A B C D E F G H I 1 2 3 4 5 6 7 8 9
-    RACSequence *concatenated = [letters concat:numbers];
-    NSLog(@"%@", concatenated);
-    NSLog(@"%@", concatenated.array);
-}
-
-#pragma mark - Flattening
-- (void)testFlatten {
-    RACSequence *letters = [@"A B C D E F G H I" componentsSeparatedByString:@" "].rac_sequence;
-    RACSequence *numbers = [@"1 2 3 4 5 6 7 8 9" componentsSeparatedByString:@" "].rac_sequence;
-    RACSequence *sequenceOfSequences = @[ letters, numbers ].rac_sequence;
-    
-    // Contains: A B C D E F G H I 1 2 3 4 5 6 7 8 9
-    RACSequence *flattened = [sequenceOfSequences flatten];
 }
 
 #pragma mark - Lifting
@@ -433,27 +253,8 @@
     NSLog(@"A:%@\nB:%@", A, B);
 }
 
-#pragma mark - Binding
-- (void)bindingData {
-    
-    RAC(self.textField, text) = [RACObserve(self, name) distinctUntilChanged];
-    
-    [[self.textField.rac_textSignal distinctUntilChanged] subscribeNext:^(NSString *x) {
-        //this creates a reference to self that when used with @weakify(self);
-        //makes sure self isn't retained
-        NSLog(@"xxxx %@", x);
-    }];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //  Model 改变后，反映到 View
-        self.name = @"bindingData 111";
-    });
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.name = @"bindingData 222";
-    });
-}
 
+#pragma mark - 
 - (IBAction)openExampleController:(id)sender {
     
     id ctrl = [[ExampleCtrl alloc] init];
@@ -470,6 +271,10 @@
 
 - (IBAction)openStreamController:(id)sender {
     [self presentViewController:[[StreamController alloc] init] animated:NO completion:nil];
+}
+
+- (IBAction)openFilterController:(id)sender {
+    [self presentViewController:[[FilterCtrl alloc] init] animated:NO completion:nil];
 }
 
 - (void)testMutableArrayChange {
