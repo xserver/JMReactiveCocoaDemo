@@ -9,9 +9,9 @@
 #import "MainCtrl.h"
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "LoginController.h"
+#import "LoginExampleCtrl.h"
 #import "CommandCtrl.h"
-#import "ExampleCtrl.h"
+#import "SignalOperationsCtrl.h"
 #import "DelegateController.h"
 #import "StreamController.h"
 #import "FilterCtrl.h"
@@ -42,8 +42,8 @@
     [super viewDidLoad];
     
     self.list = @[
-                  @"LoginController",
-                  @"ExampleCtrl",
+                  @"LoginExampleCtrl",
+                  @"SignalOperationsCtrl",
                   @"CommandCtrl",
                   @"DelegateController",
                   @"StreamController",

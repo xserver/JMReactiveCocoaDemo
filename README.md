@@ -3,10 +3,13 @@
 
 ### RAC 有哪些功能？
 1、监听视图的变化 UIView
+
 2、监听属性的变化 NSObject
+
 3、监听事件的变化（UIControlEvents）
 
 4、如何解除监听
+
 5、并行
 
 ### 内存
@@ -27,29 +30,53 @@ signal 是 push 驱动的stream，sequence是pull驱动的stream
 
 subscribeNext 和 sendNext 是对应的收与发
 
+### ReactiveCocoa 
 
+#### 扩展
+| RAC Category   |   OC   |
+|----------------|--------|
+| RACSignalSupport  | UI控件 UILabel, UIGestureRecognizer, 监听用户的输入
+| RACCommandSupport | 按钮 UIButton, UIBarButtonItem
+| RACSequenceAdditions | 容器类 NSArray, NSDictionary, NSString...       
+| RACSupport        | 异步执行 NSData, NSNotificationCenter, NSString
+| RACKeyPathUtilities | NSString 扩展
+| RACTypeParsing  | NSInvocation
+| RACDeallocating | NSObject 释放
+| RACDescription  | NSObject 帮助调试 
+| RACKVOWrapper   | NSObject RAC 对 KVO 的封装
+| RACLifting      | NSObject ?
+| RACPropertySubscribing | NSObject 对 Property
+| RACSelectorSignal      | NSObject
+
+#### 类
+RACScheduler
+RACDelegateProxy
+RACTuple
+RACChannel
+RACCommand
+
+RACStream
+RACSignal
+RACDisposable
+
+RACArraySequence
 
 ### 函数编程的特性
-*Signal的特性   RACSignal+Operations.h
 filter   过滤
 combine  && 叠加
 merge    ||
 map      修改
 chaining 串联
 
+### RACSignal+Operations.h
+doNext, doError, doCompleted
+take: takeLast, takeUntil
+...
 
-### 对 OC 的扩展
-NSObject
-各个控件 和 UIControlEvents
-KVO Delegate
-NSArray rac_sequence
-
-@protocol RACSubscriber;   订阅者符合这个协议即可的任何对象
-
-RAC 中 KVO 的操作隐藏在 search NSKeyValueObservingOptions
-RACKVOTrampoline : RACDisposable   observeValueForKeyPath:ofObject:change:context
 
 ## 参考
+
+http://sjpsega.com/blog/2014/02/11/yi--ios-7-best-practices-part-1/
 
 [Basic Operators基本操作](http://segmentfault.com/a/1190000000408492)
 
@@ -68,6 +95,7 @@ RACKVOTrampoline : RACDisposable   observeValueForKeyPath:ofObject:change:contex
 
 [介绍](http://nshipster.cn/reactivecocoa/)
 
+http://yulingtianxia.qiniudn.com/blog/2014/07/29/reactivecocoa/
 
 [RAC 作者](https://github.com/jspahrsummers/GroceryList)
 [ReactiveCocoaLayout](https://github.com/ReactiveCocoa/ReactiveCocoaLayout)
@@ -77,9 +105,6 @@ RACKVOTrampoline : RACDisposable   observeValueForKeyPath:ofObject:change:contex
 [ReactiveCocoa 实战 李忠](http://limboy.me/ios/2014/06/06/deep-into-reactivecocoa2.html)
 
 [视频 李忠](http://www.infoq.com/cn/presentations/practice-of-reactivecocoa-in-huabanwang-client )
-
-http://yulingtianxia.qiniudn.com/blog/2014/07/29/reactivecocoa/
-http://sjpsega.com/blog/2014/02/11/yi--ios-7-best-practices-part-1/
 
 ##### AFNetworking
 http://codeblog.shape.dk/blog/2013/12/02/transparent-oauth-token-refresh-using-reactivecocoa/

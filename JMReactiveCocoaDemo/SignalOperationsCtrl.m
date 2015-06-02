@@ -6,32 +6,35 @@
 //  Copyright (c) 2015年 pitaya. All rights reserved.
 //
 
-#import "ExampleCtrl.h"
+#import "SignalOperationsCtrl.h"
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 //  http://blog.sunnyxx.com/2014/03/06/rac_3_racsignal/
 //  http://blog.sunnyxx.com/2014/04/19/rac_4_filters/
 
-@interface ExampleCtrl ()
+#import "RACSignal+Operations.h"
+
+@interface SignalOperationsCtrl ()
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (copy, nonatomic) NSString *name;
 @end
 
-@implementation ExampleCtrl
+@implementation SignalOperationsCtrl
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view from its nib.
-    [self testReplay];
-//    [self testReplayLazily];
+//    [self replayLast];
+    
+    [self replayLazily];
     
 //    _textField.delegate
 }
 
 #pragma mark - replay
-- (void)testReplay {
+- (void)replayLast {
+    
     RACSignal *numberSignal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSLog(@"replay 我只执行一次，并且会缓存 sendNext 的结果");
         
@@ -44,6 +47,7 @@
 //    - (RACSignal *)replay
 //    - (RACSignal *)replayLast    在 replay 的基础上，获取sendnext中的最后一次的数据
 //    - (RACSignal *)replayLazily
+    
 //    lazily 有人 subscriber 的时候再执行，replay 和 replayLast 是先执行，lazily 的意思正式如此
     
     NSLog(@"注意 start 和 signal 中的 subscriber 执行顺序");
@@ -55,9 +59,10 @@
     }];
 }
 
-- (void)testReplayLazily {
+- (void)replayLazily {
 //    http://spin.atomicobject.com/2014/06/29/replay-replaylast-replaylazily/
 //    https://www.evernote.com/shard/s147/sh/611d1793-5087-4bfd-814b-bf2d53f988d8/4a67343fdcdfba71
+
     __block int num = 0;
     RACSignal *signal = [[RACSignal createSignal:^RACDisposable *(id subscriber) {
         num++;
@@ -201,7 +206,7 @@
 }
 
 #pragma mark - skip
-- (void)testSkip {
+- (void)skip {
     [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         [subscriber sendNext:@"1"];
         [subscriber sendNext:@"2"];
@@ -227,7 +232,6 @@
         NSLog(@"only 2 and 3 will be print: %@", x);
     }];
 }
-
 
 @end
 

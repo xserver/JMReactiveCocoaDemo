@@ -20,6 +20,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    //  过滤模式
+    [[RACObserve(self.textField, text) filter:^(id value) {
+        NSLog(@"2 filter------ %@  %p", value, value);
+        return YES;
+    }] subscribeNext:^(id x){
+        // filter NO 就不会进来了
+        NSLog(@"3 subscribe--- %@  %p", x, x);
+    }];
 }
 
 #pragma mark - Binding, distinctUntilChanged

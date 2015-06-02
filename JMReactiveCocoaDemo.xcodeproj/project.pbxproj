@@ -20,10 +20,10 @@
 		D0110F491B1C546B00AAE584 /* SequenceCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0110F471B1C546B00AAE584 /* SequenceCtrl.xib */; };
 		D0110F4D1B1C60E400AAE584 /* MainCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D0110F4B1B1C60E400AAE584 /* MainCtrl.m */; };
 		D0110F4E1B1C60E400AAE584 /* MainCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0110F4C1B1C60E400AAE584 /* MainCtrl.xib */; };
-		D03356BB1ACAEEA400AAFA49 /* ExampleCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D03356B91ACAEEA400AAFA49 /* ExampleCtrl.m */; };
-		D03356BC1ACAEEA400AAFA49 /* ExampleCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03356BA1ACAEEA400AAFA49 /* ExampleCtrl.xib */; };
-		D04223881AC64EEE00B32DCE /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = D04223861AC64EEE00B32DCE /* LoginController.m */; };
-		D04223891AC64EEE00B32DCE /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D04223871AC64EEE00B32DCE /* LoginController.xib */; };
+		D03356BB1ACAEEA400AAFA49 /* SignalOperationsCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D03356B91ACAEEA400AAFA49 /* SignalOperationsCtrl.m */; };
+		D03356BC1ACAEEA400AAFA49 /* SignalOperationsCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03356BA1ACAEEA400AAFA49 /* SignalOperationsCtrl.xib */; };
+		D04223881AC64EEE00B32DCE /* LoginExampleCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D04223861AC64EEE00B32DCE /* LoginExampleCtrl.m */; };
+		D04223891AC64EEE00B32DCE /* LoginExampleCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D04223871AC64EEE00B32DCE /* LoginExampleCtrl.xib */; };
 		D05E918F1B18539D0027C2D6 /* FunctionalBasicCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D05E918E1B18539D0027C2D6 /* FunctionalBasicCtrl.m */; };
 		D06BDBAA1B184BC9007735A7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = D06BDBA91B184BC9007735A7 /* README.md */; };
 		D06BDBAD1B1850A8007735A7 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06BDBAC1B1850A8007735A7 /* TableController.m */; };
@@ -76,12 +76,12 @@
 		D0110F4A1B1C60E400AAE584 /* MainCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCtrl.h; sourceTree = "<group>"; };
 		D0110F4B1B1C60E400AAE584 /* MainCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCtrl.m; sourceTree = "<group>"; };
 		D0110F4C1B1C60E400AAE584 /* MainCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainCtrl.xib; sourceTree = "<group>"; };
-		D03356B81ACAEEA400AAFA49 /* ExampleCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleCtrl.h; sourceTree = "<group>"; };
-		D03356B91ACAEEA400AAFA49 /* ExampleCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleCtrl.m; sourceTree = "<group>"; };
-		D03356BA1ACAEEA400AAFA49 /* ExampleCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExampleCtrl.xib; sourceTree = "<group>"; };
-		D04223851AC64EEE00B32DCE /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
-		D04223861AC64EEE00B32DCE /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
-		D04223871AC64EEE00B32DCE /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
+		D03356B81ACAEEA400AAFA49 /* SignalOperationsCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalOperationsCtrl.h; sourceTree = "<group>"; };
+		D03356B91ACAEEA400AAFA49 /* SignalOperationsCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignalOperationsCtrl.m; sourceTree = "<group>"; };
+		D03356BA1ACAEEA400AAFA49 /* SignalOperationsCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignalOperationsCtrl.xib; sourceTree = "<group>"; };
+		D04223851AC64EEE00B32DCE /* LoginExampleCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginExampleCtrl.h; sourceTree = "<group>"; };
+		D04223861AC64EEE00B32DCE /* LoginExampleCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginExampleCtrl.m; sourceTree = "<group>"; };
+		D04223871AC64EEE00B32DCE /* LoginExampleCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginExampleCtrl.xib; sourceTree = "<group>"; };
 		D05E918D1B18539D0027C2D6 /* FunctionalBasicCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionalBasicCtrl.h; sourceTree = "<group>"; };
 		D05E918E1B18539D0027C2D6 /* FunctionalBasicCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionalBasicCtrl.m; sourceTree = "<group>"; };
 		D06BDBA91B184BC9007735A7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -188,9 +188,9 @@
 				D0B206B31ACCDEBB00FCD638 /* DelegateController.h */,
 				D0B206B41ACCDEBB00FCD638 /* DelegateController.m */,
 				D0B206B51ACCDEBB00FCD638 /* DelegateController.xib */,
-				D03356B81ACAEEA400AAFA49 /* ExampleCtrl.h */,
-				D03356B91ACAEEA400AAFA49 /* ExampleCtrl.m */,
-				D03356BA1ACAEEA400AAFA49 /* ExampleCtrl.xib */,
+				D03356B81ACAEEA400AAFA49 /* SignalOperationsCtrl.h */,
+				D03356B91ACAEEA400AAFA49 /* SignalOperationsCtrl.m */,
+				D03356BA1ACAEEA400AAFA49 /* SignalOperationsCtrl.xib */,
 				D0110F2E1B1C50FD00AAE584 /* FilterCtrl.h */,
 				D0110F2F1B1C50FD00AAE584 /* FilterCtrl.m */,
 				D0110F301B1C50FD00AAE584 /* FilterCtrl.xib */,
@@ -201,9 +201,9 @@
 				D0110F351B1C528100AAE584 /* GestureCtrl.xib */,
 				D0D582371AC1340700AB0117 /* Images.xcassets */,
 				D0D582391AC1340700AB0117 /* LaunchScreen.xib */,
-				D04223851AC64EEE00B32DCE /* LoginController.h */,
-				D04223861AC64EEE00B32DCE /* LoginController.m */,
-				D04223871AC64EEE00B32DCE /* LoginController.xib */,
+				D04223851AC64EEE00B32DCE /* LoginExampleCtrl.h */,
+				D04223861AC64EEE00B32DCE /* LoginExampleCtrl.m */,
+				D04223871AC64EEE00B32DCE /* LoginExampleCtrl.xib */,
 				D09A167E1AC8EA290010F4AC /* NSString+EmailAdditions.h */,
 				D09A167F1AC8EA290010F4AC /* NSString+EmailAdditions.m */,
 				D0110F401B1C53A900AAE584 /* SchedulerCtrl.h */,
@@ -341,7 +341,7 @@
 				D0B206B71ACCDEBB00FCD638 /* DelegateController.xib in Resources */,
 				D09A167D1AC8E8D00010F4AC /* CommandCtrl.xib in Resources */,
 				D0110F321B1C50FD00AAE584 /* FilterCtrl.xib in Resources */,
-				D04223891AC64EEE00B32DCE /* LoginController.xib in Resources */,
+				D04223891AC64EEE00B32DCE /* LoginExampleCtrl.xib in Resources */,
 				D0110F491B1C546B00AAE584 /* SequenceCtrl.xib in Resources */,
 				D0D5823B1AC1340700AB0117 /* LaunchScreen.xib in Resources */,
 				D0110F441B1C53A900AAE584 /* SchedulerCtrl.xib in Resources */,
@@ -349,7 +349,7 @@
 				D0110F4E1B1C60E400AAE584 /* MainCtrl.xib in Resources */,
 				D0D582381AC1340700AB0117 /* Images.xcassets in Resources */,
 				D0110F371B1C528100AAE584 /* GestureCtrl.xib in Resources */,
-				D03356BC1ACAEEA400AAFA49 /* ExampleCtrl.xib in Resources */,
+				D03356BC1ACAEEA400AAFA49 /* SignalOperationsCtrl.xib in Resources */,
 				D0110F3F1B1C52F400AAE584 /* SubjectCtrl.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,13 +405,13 @@
 				D0B206B61ACCDEBB00FCD638 /* DelegateController.m in Sources */,
 				D0110F3E1B1C52F400AAE584 /* SubjectCtrl.m in Sources */,
 				D0110F481B1C546B00AAE584 /* SequenceCtrl.m in Sources */,
-				D04223881AC64EEE00B32DCE /* LoginController.m in Sources */,
+				D04223881AC64EEE00B32DCE /* LoginExampleCtrl.m in Sources */,
 				D0110F311B1C50FD00AAE584 /* FilterCtrl.m in Sources */,
 				D0FF25DA1AC5070E00AFDA05 /* Apple.m in Sources */,
 				D05E918F1B18539D0027C2D6 /* FunctionalBasicCtrl.m in Sources */,
 				D0B206BB1ACCEA3A00FCD638 /* StreamController.m in Sources */,
 				D06BDBAA1B184BC9007735A7 /* README.md in Sources */,
-				D03356BB1ACAEEA400AAFA49 /* ExampleCtrl.m in Sources */,
+				D03356BB1ACAEEA400AAFA49 /* SignalOperationsCtrl.m in Sources */,
 				D09A16821AC8EA290010F4AC /* NSString+EmailAdditions.m in Sources */,
 				D06BDBAD1B1850A8007735A7 /* TableController.m in Sources */,
 				D09A167C1AC8E8D00010F4AC /* CommandCtrl.m in Sources */,

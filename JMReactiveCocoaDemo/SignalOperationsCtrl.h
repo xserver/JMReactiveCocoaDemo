@@ -1,13 +1,13 @@
 //
-//  LoginController.h
+//  ExampleCtrl.h
 //  JMReactiveCocoaDemo
 //
-//  Created by xserver on 15/3/28.
+//  Created by xserver on 15/3/31.
 //  Copyright (c) 2015年 pitaya. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface LoginController : UIViewController
+@interface SignalOperationsCtrl : UIViewController
 
 @end
