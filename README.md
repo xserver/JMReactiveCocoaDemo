@@ -1,16 +1,26 @@
+## ReactiveCocoa 
 
 [ReactiveCocoa Cocoadocs](http://cocoadocs.org/docsets/ReactiveCocoa)
+[Design Guidelines](https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/DesignGuidelines.md)
+[ReactiveCocoa README](https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/README.md)
+
+
+### 函数编程的『文化』
+map      修改，重映射
+filter   过滤、拦截
+combine  &&  =>  A && B && C => 合成D
+merge    ||  =>  A || B || C => 合成D
+chaining 串联
+flatten
+
+map, filter, fold/reduce
 
 ### RAC 有哪些功能？
-1、监听视图的变化 UIView
-
-2、监听属性的变化 NSObject
-
-3、监听事件的变化（UIControlEvents）
-
-4、如何解除监听
-
-5、并行
+1. 监听视图的变化 UIView
+2. 监听属性的变化 NSObject
+3. 监听事件的变化（UIControlEvents）
+4. 如何解除监听
+5. 并行
 
 ### 内存
 在block中引用self，需要使用@weakify(self)和@strongify(self)来避免强引用&保护将要执行的 block。
@@ -30,16 +40,16 @@ signal 是 push 驱动的stream，sequence是pull驱动的stream
 
 subscribeNext 和 sendNext 是对应的收与发
 
-### ReactiveCocoa 
+
 
 #### 扩展
-| RAC Category   |   OC   |
-|----------------|--------|
-| RACSignalSupport  | UI控件 UILabel, UIGestureRecognizer, 监听用户的输入
+| RAC Category      |         OC         |
+|-------------------|--------------------|
+| RACSignalSupport  | UI控件 UIControl, UIGestureRecognizer, 监听用户的输入
 | RACCommandSupport | 按钮 UIButton, UIBarButtonItem
 | RACSequenceAdditions | 容器类 NSArray, NSDictionary, NSString...       
-| RACSupport        | 异步执行 NSData, NSNotificationCenter, NSString
-| RACKeyPathUtilities | NSString 扩展
+| RACSupport           | 异步执行 NSData, NSNotificationCenter, NSString
+| RACKeyPathUtilities  | NSString 扩展
 | RACTypeParsing  | NSInvocation
 | RACDeallocating | NSObject 释放
 | RACDescription  | NSObject 帮助调试 
@@ -48,25 +58,28 @@ subscribeNext 和 sendNext 是对应的收与发
 | RACPropertySubscribing | NSObject 对 Property
 | RACSelectorSignal      | NSObject
 
+
 #### 类
-RACScheduler
-RACDelegateProxy
-RACTuple
-RACChannel
-RACCommand
+[Framework Overview](https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/FrameworkOverview.md)
 
-RACStream
-RACSignal
-RACDisposable
+| RAC Class            |         作用       |
+|----------------------|--------------------|
+| RACStream            | abstract class
+| RACSignal            | push-driven stream
+| RACSubscriber        | anything waiting events from signal, any object<Subscriber>, [subscriber send:]
+| |
+| RACSubject           | signal can manually controlled
+| RACCommand           | some action
+| RACMulticastConnection| cold -> hot 
+| |
+| RACSequences         | pull-driven stream. kind of collection
+| RACDisposable        | used for cancellation and resource cleanup
+| RACScheduler         | signal scheduler
+| Value Type           | RACTuple, RACUnit, RACEvent
+| RACDelegateProxy
+| RACChannel   
 
-RACArraySequence
 
-### 函数编程的特性
-filter   过滤
-combine  && 叠加
-merge    ||
-map      修改
-chaining 串联
 
 ### RACSignal+Operations.h
 doNext, doError, doCompleted
@@ -78,9 +91,9 @@ take: takeLast, takeUntil
 
 http://sjpsega.com/blog/2014/02/11/yi--ios-7-best-practices-part-1/
 
-[Basic Operators基本操作](http://segmentfault.com/a/1190000000408492)
 
-[熊](http://blog.sina.com.cn/s/articlelist_1704064674_0_1.html)
+[ReactiveCocoa Framework Overview](https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/FrameworkOverview.md)
+[ReactiveCocoa Framework Overview 译文](http://blog.sina.com.cn/s/blog_6591f6a20101clhv.html)
 
 [知泉](http://www.zhiquan.me/tags/Functional-Reactive-Programming/)
 
@@ -106,9 +119,9 @@ http://yulingtianxia.qiniudn.com/blog/2014/07/29/reactivecocoa/
 
 [视频 李忠](http://www.infoq.com/cn/presentations/practice-of-reactivecocoa-in-huabanwang-client )
 
-##### AFNetworking
+[Basic Operators基本操作](http://segmentfault.com/a/1190000000408492)
+##### RAC+AFNetworking
 http://codeblog.shape.dk/blog/2013/12/02/transparent-oauth-token-refresh-using-reactivecocoa/
-
 http://codeblog.shape.dk/blog/2013/11/16/wrapping-afnetworking-with-reactivecocoa/
 
 ![ReactiveCocoa](http://limboy.me/image/FRP_ReactiveCocoa_large.png)

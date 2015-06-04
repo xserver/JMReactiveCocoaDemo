@@ -14,15 +14,14 @@
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <Masonry/Masonry.h>
 
-
 @interface CommandCtrl ()
 @property(nonatomic, strong) SubscribeViewModel *viewModel;
 
-@property(nonatomic, strong) UITextField *emailTextField;
-@property(nonatomic, strong) UIButton *subscribeButton;
-@property(nonatomic, strong) UILabel *statusLabel;
-@property (nonatomic, strong  ) UIButton    *commandButton;
-@property (nonatomic, strong) UIButton *button;
+@property (nonatomic, strong) UITextField *emailTextField;
+@property (nonatomic, strong) UIButton    *subscribeButton;
+@property (nonatomic, strong) UILabel     *statusLabel;
+@property (nonatomic, strong) UIButton    *commandButton;
+@property (nonatomic, strong) UIButton    *button;
 @property (nonatomic, copy) NSString *name;
 @end
 
@@ -38,56 +37,93 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = NSLocalizedString(@"Subscribe Example", nil);
-    
     [self addViews];
     [self defineLayout];
-    [self bindWithViewModel];
+    [self bindData];
+    
+    [self testButton];
 }
 
-#pragma mark -
-
-- (void)addViews {
-    [self.view addSubview:self.emailTextField];
-    [self.view addSubview:self.subscribeButton];
-    [self.view addSubview:self.statusLabel];
+- (void)bindData {
+    RAC(self.viewModel, email) = self.emailTextField.rac_textSignal;
+    self.subscribeButton.rac_command = self.viewModel.subscribeCommand;
+    RAC(self.statusLabel, text) = RACObserve(self.viewModel, statusMessage);
 }
 
 - (void)testButton {
+
+    //  _button.rac_command.executing
+    //  _button.rac_command.executionSignals
+    //  _button.rac_command.enabled             //  是否启动
+    //  _button.rac_command.errors
+    //  _button.rac_commandallowsConcurrentExecution
     
     _button.rac_command = [[RACCommand alloc] initWithSignalBlock:^(id button) {
         NSLog(@"button was pressed!");
         return [RACSignal empty];
     }];
     
-    //    _button.rac_command.executing
-    //    _button.rac_command.executionSignals
-    //        _button.rac_command.errors subscribeNext:<#^(id x)nextBlock#>
-    
-    RACSignal *signal = [RACObserve(self, name) map:^id(id x){
-        return @"";
+    [_button.rac_command.executing subscribeNext:^(id x){
+        NSLog(@"executing == %@", x);
     }];
     
-    //    _button.rac_command = [[RACCommand alloc] initWithEnabled:signal
-    //                                                  signalBlock:^RACSignal *(id input){
-    //                                                      return [RACSignal empty];
-    //                                                  }];
+    [_button.rac_command.executionSignals subscribeNext:^(id x){
+        NSLog(@"executionSignals == %@", x);
+    }];
     
-    // combine  组合
-    //    RACSignal combineLatest:<#(id<NSFastEnumeration>)#> reduce:<#^id(void)reduceBlock#>
-    //    [_button rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:<#(RACSignal *)#>
+    [_button.rac_command.enabled subscribeNext:^(id x){
+        NSLog(@"enabled == %@", x);
+    }];
     
-    
+    [_button.rac_command.errors subscribeNext:^(id x){
+        NSLog(@"errors == %@", x);
+    }];
+
     //  针对 UIControl 事件的 Signal
-    [[_button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x){
-        NSLog(@"events");
+//    [[_button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x){
+//        NSLog(@"UIControlEventTouchUpInside");
+//    }];
+
+
+    
+//    _button.rac_command = [[RACCommand alloc] initWithEnabled:signal
+//                                                  signalBlock:^RACSignal *(id input){
+//                                                      return [RACSignal empty];
+//                                                  }];
+    
+
+}
+
+- (void)testCommand {
+    _commandButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id input){
+        NSLog(@"button passed");
+        
+        //  如何创建一个 signal 并返回
+        return [RACSignal empty];
     }];
+}
+
+#pragma mark -
+- (void)addViews {
+    [self.view addSubview:self.emailTextField];
+    [self.view addSubview:self.subscribeButton];
+    [self.view addSubview:self.statusLabel];
+    
+    self.button = [UIButton buttonWithType:0];
+    self.button.backgroundColor = [UIColor orangeColor];
+    [self.button setTitle:@"Test Command" forState:0];
+    [self.view addSubview:self.button];
 }
 
 - (void)defineLayout {
     @weakify(self);
     
+    [self.button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@20);
+        make.centerY.equalTo(self.view);
+        make.height.equalTo(@40);
+        make.width.equalTo(@200);
+    }];
     [self.emailTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self);
         make.top.equalTo(self.view).with.offset(100.f);
@@ -113,14 +149,8 @@
     }];
 }
 
-- (void)bindWithViewModel {
-    RAC(self.viewModel, email) = self.emailTextField.rac_textSignal;
-    self.subscribeButton.rac_command = self.viewModel.subscribeCommand;
-    RAC(self.statusLabel, text) = RACObserve(self.viewModel, statusMessage);
-}
 
 #pragma mark - Views
-
 - (UITextField *)emailTextField {
     if (!_emailTextField) {
         _emailTextField = [UITextField new];
@@ -148,13 +178,4 @@
     return _statusLabel;
 }
 
-#pragma mark - xx
-- (void)testCommand {
-    _commandButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id input){
-        NSLog(@"button passed");
-        
-        //  如何创建一个 signal 并返回
-        return [RACSignal empty];
-    }];
-}
 @end

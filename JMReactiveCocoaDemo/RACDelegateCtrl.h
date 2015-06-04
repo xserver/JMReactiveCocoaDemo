@@ -1,5 +1,5 @@
 //
-//  DelegateController.h
+//  RACDelegateCtrl.h
 //  JMReactiveCocoaDemo
 //
 //  Created by xserver on 15/4/2.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DelegateController : UIViewController
+@interface RACDelegateCtrl : UIViewController
 
 @end

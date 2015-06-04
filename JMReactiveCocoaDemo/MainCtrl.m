@@ -12,7 +12,7 @@
 #import "LoginExampleCtrl.h"
 #import "CommandCtrl.h"
 #import "SignalOperationsCtrl.h"
-#import "DelegateController.h"
+#import "RACDelegateCtrl.h"
 #import "StreamController.h"
 #import "FilterCtrl.h"
 #import "Blah.h"
@@ -41,11 +41,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    __block int missilesToLaunch = 0;
+    
+    // Signal that will have the side effect of changing `missilesToLaunch` on
+    // subscription.
+    RACSignal *processedSignal = [[RACSignal
+                                   return:@"missiles"]
+                                  map:^(id x) {
+                                      missilesToLaunch++;
+                                      return [NSString stringWithFormat:@"will launch %d %@", missilesToLaunch, x];
+                                  }];
+    
+    // This will print "First will launch 1 missiles"
+    [processedSignal subscribeNext:^(id x) {
+        NSLog(@"First %@", x);
+    }];
+    
+    // This will print "Second will launch 2 missiles"
+    [processedSignal subscribeNext:^(id x) {
+        NSLog(@"Second %@", x);
+    }];
     self.list = @[
                   @"LoginExampleCtrl",
-                  @"SignalOperationsCtrl",
                   @"CommandCtrl",
-                  @"DelegateController",
+                  @"SignalOperationsCtrl",
+                  @"RACDelegateCtrl",
                   @"StreamController",
                   @"FilterCtrl"
                   ];

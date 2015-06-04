@@ -19,16 +19,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    [[RACObserve(self, name)
+      filter:^(NSString *newName) {
+          return [newName hasPrefix:@"j"];
+      }]
+     subscribeNext:^(NSString *newName) {
+         NSLog(@"%@", newName);
+     }];
     
-    //  过滤模式
-    [[RACObserve(self.textField, text) filter:^(id value) {
-        NSLog(@"2 filter------ %@  %p", value, value);
-        return YES;
-    }] subscribeNext:^(id x){
-        // filter NO 就不会进来了
-        NSLog(@"3 subscribe--- %@  %p", x, x);
-    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.name = @"j~~~";
+    });
+    
+//    //  过滤模式
+//    [[RACObserve(self.textField, text) filter:^(id value) {
+//        NSLog(@"2 filter------ %@  %p", value, value);
+//        return YES;
+//    }] subscribeNext:^(id x){
+//        // filter NO 就不会进来了
+//        NSLog(@"3 subscribe--- %@  %p", x, x);
+//    }];
 }
 
 #pragma mark - Binding, distinctUntilChanged

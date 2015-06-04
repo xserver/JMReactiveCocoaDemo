@@ -1,23 +1,23 @@
 //
-//  DelegateController.m
+//  RACDelegateCtrl.m
 //  JMReactiveCocoaDemo
 //
 //  Created by xserver on 15/4/2.
 //  Copyright (c) 2015年 pitaya. All rights reserved.
 //
 
-#import "DelegateController.h"
+#import "RACDelegateCtrl.h"
 #import <objc/runtime.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <ReactiveCocoa/RACDelegateProxy.h>
 
-@interface DelegateController ()
+@interface RACDelegateCtrl ()
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) RACDelegateProxy *proxy;
 @end
 
-@implementation DelegateController
+@implementation RACDelegateCtrl
 
 - (void)viewDidLoad {
     [super viewDidLoad];

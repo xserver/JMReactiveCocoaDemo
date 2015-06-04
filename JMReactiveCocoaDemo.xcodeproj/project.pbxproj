@@ -31,8 +31,8 @@
 		D09A167D1AC8E8D00010F4AC /* CommandCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09A167B1AC8E8D00010F4AC /* CommandCtrl.xib */; };
 		D09A16821AC8EA290010F4AC /* NSString+EmailAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D09A167F1AC8EA290010F4AC /* NSString+EmailAdditions.m */; };
 		D09A16831AC8EA290010F4AC /* SubscribeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D09A16811AC8EA290010F4AC /* SubscribeViewModel.m */; };
-		D0B206B61ACCDEBB00FCD638 /* DelegateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B206B41ACCDEBB00FCD638 /* DelegateController.m */; };
-		D0B206B71ACCDEBB00FCD638 /* DelegateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B206B51ACCDEBB00FCD638 /* DelegateController.xib */; };
+		D0B206B61ACCDEBB00FCD638 /* RACDelegateCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B206B41ACCDEBB00FCD638 /* RACDelegateCtrl.m */; };
+		D0B206B71ACCDEBB00FCD638 /* RACDelegateCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B206B51ACCDEBB00FCD638 /* RACDelegateCtrl.xib */; };
 		D0B206BB1ACCEA3A00FCD638 /* StreamController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B206B91ACCEA3A00FCD638 /* StreamController.m */; };
 		D0B206BC1ACCEA3A00FCD638 /* StreamController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B206BA1ACCEA3A00FCD638 /* StreamController.xib */; };
 		D0CB59B11B0DDFE5003689F5 /* Blah.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CB59B01B0DDFE5003689F5 /* Blah.m */; };
@@ -94,9 +94,9 @@
 		D09A167F1AC8EA290010F4AC /* NSString+EmailAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EmailAdditions.m"; sourceTree = "<group>"; };
 		D09A16801AC8EA290010F4AC /* SubscribeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeViewModel.h; sourceTree = "<group>"; };
 		D09A16811AC8EA290010F4AC /* SubscribeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeViewModel.m; sourceTree = "<group>"; };
-		D0B206B31ACCDEBB00FCD638 /* DelegateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateController.h; sourceTree = "<group>"; };
-		D0B206B41ACCDEBB00FCD638 /* DelegateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateController.m; sourceTree = "<group>"; };
-		D0B206B51ACCDEBB00FCD638 /* DelegateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DelegateController.xib; sourceTree = "<group>"; };
+		D0B206B31ACCDEBB00FCD638 /* RACDelegateCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACDelegateCtrl.h; sourceTree = "<group>"; };
+		D0B206B41ACCDEBB00FCD638 /* RACDelegateCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACDelegateCtrl.m; sourceTree = "<group>"; };
+		D0B206B51ACCDEBB00FCD638 /* RACDelegateCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RACDelegateCtrl.xib; sourceTree = "<group>"; };
 		D0B206B81ACCEA3A00FCD638 /* StreamController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamController.h; sourceTree = "<group>"; };
 		D0B206B91ACCEA3A00FCD638 /* StreamController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamController.m; sourceTree = "<group>"; };
 		D0B206BA1ACCEA3A00FCD638 /* StreamController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreamController.xib; sourceTree = "<group>"; };
@@ -185,9 +185,9 @@
 				D09A16791AC8E8D00010F4AC /* CommandCtrl.h */,
 				D09A167A1AC8E8D00010F4AC /* CommandCtrl.m */,
 				D09A167B1AC8E8D00010F4AC /* CommandCtrl.xib */,
-				D0B206B31ACCDEBB00FCD638 /* DelegateController.h */,
-				D0B206B41ACCDEBB00FCD638 /* DelegateController.m */,
-				D0B206B51ACCDEBB00FCD638 /* DelegateController.xib */,
+				D0B206B31ACCDEBB00FCD638 /* RACDelegateCtrl.h */,
+				D0B206B41ACCDEBB00FCD638 /* RACDelegateCtrl.m */,
+				D0B206B51ACCDEBB00FCD638 /* RACDelegateCtrl.xib */,
 				D03356B81ACAEEA400AAFA49 /* SignalOperationsCtrl.h */,
 				D03356B91ACAEEA400AAFA49 /* SignalOperationsCtrl.m */,
 				D03356BA1ACAEEA400AAFA49 /* SignalOperationsCtrl.xib */,
@@ -338,7 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0B206B71ACCDEBB00FCD638 /* DelegateController.xib in Resources */,
+				D0B206B71ACCDEBB00FCD638 /* RACDelegateCtrl.xib in Resources */,
 				D09A167D1AC8E8D00010F4AC /* CommandCtrl.xib in Resources */,
 				D0110F321B1C50FD00AAE584 /* FilterCtrl.xib in Resources */,
 				D04223891AC64EEE00B32DCE /* LoginExampleCtrl.xib in Resources */,
@@ -402,7 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0110F431B1C53A900AAE584 /* SchedulerCtrl.m in Sources */,
-				D0B206B61ACCDEBB00FCD638 /* DelegateController.m in Sources */,
+				D0B206B61ACCDEBB00FCD638 /* RACDelegateCtrl.m in Sources */,
 				D0110F3E1B1C52F400AAE584 /* SubjectCtrl.m in Sources */,
 				D0110F481B1C546B00AAE584 /* SequenceCtrl.m in Sources */,
 				D04223881AC64EEE00B32DCE /* LoginExampleCtrl.m in Sources */,

@@ -33,12 +33,15 @@ static NSString *const kSubscribeURL = @"http://reactivetest.apiary.io/subscribe
 	}];
 
     //  成功
-	RACSignal *completedMessageSource = [self.subscribeCommand.executionSignals flattenMap:^RACStream *(RACSignal *subscribeSignal) {
-		return [[[subscribeSignal materialize] filter:^BOOL(RACEvent *event) {
-			return event.eventType == RACEventTypeCompleted;
-		}] map:^id(id value) {
-			return NSLocalizedString(@"Thanks", nil);
-		}];
+	RACSignal *completedMessageSource = [self.subscribeCommand.executionSignals
+                                         flattenMap:^RACStream *(RACSignal *subscribeSignal) {
+                                             return [[[subscribeSignal materialize]
+                                                      
+                                         filter:^BOOL(RACEvent *event) {
+                                             return event.eventType == RACEventTypeCompleted;}]
+                                                     
+                                          map:^id(id value) {
+                                             return NSLocalizedString(@"Thanks", nil);}];
 	}];
 
     //  失败
@@ -77,7 +80,6 @@ static NSString *const kSubscribeURL = @"http://reactivetest.apiary.io/subscribe
 	if (!_emailValidSignal) {
 		_emailValidSignal = [RACObserve(self, email) map:^id(NSString *email) {
 			return @([email isValidEmail]);
-            return @YES;
 		}];
 	}
 	return _emailValidSignal;
