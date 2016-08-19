@@ -23,7 +23,7 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Masonry (0.6.1)
+  - Masonry (1.0.1)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -33,15 +33,17 @@ PODS:
     - ReactiveCocoa/Core
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.5.2)
-  - AFNetworking-RACExtensions (~> 0.1.6)
-  - Masonry (~> 0.6.1)
-  - ReactiveCocoa (~> 2.5)
+  - AFNetworking
+  - AFNetworking-RACExtensions
+  - Masonry
+  - ReactiveCocoa
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AFNetworking-RACExtensions: a043c6b492fa892395ceb9d20bc4c94e96e08a57
-  Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
+  Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
-COCOAPODS: 0.37.2
+PODFILE CHECKSUM: cbdf19cf3af2f5c8a07feffc7ee816dd26fa1f6e
+
+COCOAPODS: 1.0.1

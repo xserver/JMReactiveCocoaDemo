@@ -9,6 +9,7 @@
 #import "SignalOperationsCtrl.h"
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+
 //  http://blog.sunnyxx.com/2014/03/06/rac_3_racsignal/
 //  http://blog.sunnyxx.com/2014/04/19/rac_4_filters/
 
@@ -36,27 +37,35 @@
 - (void)replayLast {
     
     RACSignal *numberSignal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSLog(@"replay 我只执行一次，并且会缓存 sendNext 的结果");
         
-        [subscriber sendNext:@(random() % 10)];
-        [subscriber sendNext:@(random() % 10  + 10)];
-        [subscriber sendNext:@(random() % 10  + 20)];
+        NSLog(@"replay 的重点是，我只执行一次，并且会缓存 sendNext 的结果");
+        
+        [subscriber sendNext:@(10)];
+        [subscriber sendNext:@(20)];
+        [subscriber sendNext:@(30)];
         return nil;
+        
     }] replayLast];
+
+    NSLog(@"Start subscriptions");
+    
     
 //    - (RACSignal *)replay
-//    - (RACSignal *)replayLast    在 replay 的基础上，获取sendnext中的最后一次的数据
-//    - (RACSignal *)replayLazily
-    
-//    lazily 有人 subscriber 的时候再执行，replay 和 replayLast 是先执行，lazily 的意思正式如此
+//    - (RACSignal *)replayLast     在 replay 的基础上，获取sendnext中的最后一次的数据
+//    - (RACSignal *)replayLazily   lazily 有人 subscriber 的时候再执行
     
     NSLog(@"注意 start 和 signal 中的 subscriber 执行顺序");
+    
     [numberSignal subscribeNext:^(id x) {
         NSLog(@"A %@", x);
     }];
-    [numberSignal subscribeNext:^(id x) {
-        NSLog(@"B %@", x);
-    }];
+    
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [numberSignal subscribeNext:^(id x) {
+            NSLog(@"B %@", x);
+        }];
+    });
 }
 
 - (void)replayLazily {
@@ -73,20 +82,23 @@
     
     NSLog(@"Start subscriptions");
     
-    // Subscriber 1 (S1)
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [signal subscribeNext:^(id x) {
+            NSLog(@"S2: %@", x);
+        }];
+    });
+    
     [signal subscribeNext:^(id x) {
         NSLog(@"S1: %@", x);
     }];
     
-    // Subscriber 2 (S2)
-    [signal subscribeNext:^(id x) {
-        NSLog(@"S2: %@", x);
-    }];
     
-    // Subscriber 3 (S3)
-    [signal subscribeNext:^(id x) {
-        NSLog(@"S3: %@", x);
-    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [signal subscribeNext:^(id x) {
+            NSLog(@"S3: %@", x);
+        }];
+    });
 }
 
 - (void)testDoxx {
@@ -234,24 +246,4 @@
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

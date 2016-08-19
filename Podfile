@@ -1,8 +1,23 @@
-source 'https://github.com/CocoaPods/Specs.git'
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
 
-platform :ios,"8.0"
+target 'JMReactiveCocoaDemo' do
+  # Uncomment this line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
 
-pod 'ReactiveCocoa', '~> 2.5'
-pod 'Masonry', '~> 0.6.1'
-pod 'AFNetworking', '~> 2.5.2'
-pod 'AFNetworking-RACExtensions', '~> 0.1.6'
+  # Pods for JMReactiveCocoaDemo
+
+  target 'JMReactiveCocoaDemoTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+
+
+pod 'ReactiveCocoa'
+pod 'Masonry'
+pod 'AFNetworking'
+pod 'AFNetworking-RACExtensions'
+
+
+end

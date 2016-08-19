@@ -20,10 +20,12 @@
 @property (nonatomic, strong) UITextField *emailTextField;
 @property (nonatomic, strong) UIButton    *subscribeButton;
 @property (nonatomic, strong) UILabel     *statusLabel;
-@property (nonatomic, strong) UIButton    *commandButton;
-@property (nonatomic, strong) UIButton    *button;
+
+@property (weak, nonatomic) IBOutlet UIButton *commandButton;
+
 @property (nonatomic, copy) NSString *name;
 @end
+
 
 @implementation CommandCtrl
 
@@ -37,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self addViews];
     [self defineLayout];
     [self bindData];
@@ -45,56 +48,81 @@
 }
 
 - (void)bindData {
+    
     RAC(self.viewModel, email) = self.emailTextField.rac_textSignal;
+    
     self.subscribeButton.rac_command = self.viewModel.subscribeCommand;
+    
     RAC(self.statusLabel, text) = RACObserve(self.viewModel, statusMessage);
 }
 
 - (void)testButton {
 
-    //  _button.rac_command.executing
-    //  _button.rac_command.executionSignals
-    //  _button.rac_command.enabled             //  是否启动
-    //  _button.rac_command.errors
-    //  _button.rac_commandallowsConcurrentExecution
+    //  _commandButton.rac_command.executing
+    //  _commandButton.rac_command.executionSignals
+    //  _commandButton.rac_command.enabled             //  是否启动
+    //  _commandButton.rac_command.errors
+    //  _commandButton.rac_commandallowsConcurrentExecution
     
-    _button.rac_command = [[RACCommand alloc] initWithSignalBlock:^(id button) {
+    _commandButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^(id input) {
+        
         NSLog(@"button was pressed!");
-        return [RACSignal empty];
+        NSLog(@"input = %@", input);
+        
+        UIButton *btn = input;
+        btn.enabled = NO;
+        
+//        return [RACSignal empty];
+        
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            
+            
+            
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [subscriber sendNext:@"xxxxxx"];
+                [subscriber sendCompleted];
+            });
+            
+//            [subscriber sendError:@"aaaaaaa"];
+            return nil;
+        }];
     }];
     
-    [_button.rac_command.executing subscribeNext:^(id x){
-        NSLog(@"executing == %@", x);
-    }];
     
-    [_button.rac_command.executionSignals subscribeNext:^(id x){
-        NSLog(@"executionSignals == %@", x);
-    }];
-    
-    [_button.rac_command.enabled subscribeNext:^(id x){
-        NSLog(@"enabled == %@", x);
-    }];
-    
-    [_button.rac_command.errors subscribeNext:^(id x){
-        NSLog(@"errors == %@", x);
-    }];
-
     //  针对 UIControl 事件的 Signal
-//    [[_button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x){
-//        NSLog(@"UIControlEventTouchUpInside");
-//    }];
-
-
+    [[_commandButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x){
+        NSLog(@"UIControlEventTouchUpInside  %@", [x class]);
+    }];
     
-//    _button.rac_command = [[RACCommand alloc] initWithEnabled:signal
-//                                                  signalBlock:^RACSignal *(id input){
-//                                                      return [RACSignal empty];
-//                                                  }];
+    [_commandButton.rac_command.executing subscribeNext:^(id x){
+        NSLog(@"executing == %@      %@", x, [x class]);
+    }];
     
+    [_commandButton.rac_command.executionSignals subscribeNext:^(id x){
+        NSLog(@"executionSignals == %@       %@", x, [x class]);
+    }];
 
+    [_commandButton.rac_command.enabled subscribeNext:^(id x){
+        NSLog(@"enabled == %@   %@", x, [x class]);
+    }];
+
+    [_commandButton.rac_command.errors subscribeNext:^(id x){
+        NSLog(@"errors == %@   %@", x, [x class]);
+    }];
+}
+
+- (void)requestData {
+    //  模拟网络
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+    });
 }
 
 - (void)testCommand {
+    
     _commandButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id input){
         NSLog(@"button passed");
         
@@ -108,22 +136,11 @@
     [self.view addSubview:self.emailTextField];
     [self.view addSubview:self.subscribeButton];
     [self.view addSubview:self.statusLabel];
-    
-    self.button = [UIButton buttonWithType:0];
-    self.button.backgroundColor = [UIColor orangeColor];
-    [self.button setTitle:@"Test Command" forState:0];
-    [self.view addSubview:self.button];
 }
 
 - (void)defineLayout {
     @weakify(self);
-    
-    [self.button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@20);
-        make.centerY.equalTo(self.view);
-        make.height.equalTo(@40);
-        make.width.equalTo(@200);
-    }];
+
     [self.emailTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self);
         make.top.equalTo(self.view).with.offset(100.f);

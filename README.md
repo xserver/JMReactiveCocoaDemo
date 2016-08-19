@@ -23,14 +23,14 @@ map, filter, fold/reduce
 5. 并行
 
 ### 内存
-在block中引用self，需要使用@weakify(self)和@strongify(self)来避免强引用&保护将要执行的 block。
-使用时应该注意block的嵌套层数，不恰当的滥用多层嵌套block可能给程序的可维护性带来灾难。
+在 block 中引用self，需要使用 @weakify(self)和@strongify(self)来避免强引用&保护将要执行的 block。
+使用时应该注意 block 的嵌套层数，不恰当的滥用多层嵌套block可能给程序的可维护性带来灾难。
 
 
 ### Signal 是什么
 signal 是一个函数、block、事件
 
-signal作为local变量时，如果没有被subscribe，那么方法执行完后，该变量会被dealloc。
+signal 作为 local 变量时，如果没有被subscribe，那么方法执行完后，该变量会被dealloc。
 signal有被subscribe，那么subscriber会持有该signal，
     直到signal sendCompleted或sendError时，才会解除持有关系，signal才会被dealloc。
 

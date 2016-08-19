@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BA3DAADE74DFD8A5BEFB1952 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1544D62FA998B2C9456E3699 /* libPods.a */; };
+		8CB81E3F56CE58EE0CC9DDD7 /* libPods-JMReactiveCocoaDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4559CA4795D4609CEB7A9BB0 /* libPods-JMReactiveCocoaDemo.a */; };
+		C03E48A77CCD8086E9B8A574 /* libPods-JMReactiveCocoaDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5A0F89A3C5256A9728D189 /* libPods-JMReactiveCocoaDemoTests.a */; };
 		D0110F311B1C50FD00AAE584 /* FilterCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D0110F2F1B1C50FD00AAE584 /* FilterCtrl.m */; };
 		D0110F321B1C50FD00AAE584 /* FilterCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0110F301B1C50FD00AAE584 /* FilterCtrl.xib */; };
 		D0110F361B1C528100AAE584 /* GestureCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D0110F341B1C528100AAE584 /* GestureCtrl.m */; };
@@ -55,9 +56,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1544D62FA998B2C9456E3699 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		2AA5E515FA9E59C259058117 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		6781E5205AF9E89BE886C1B4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		0205DA818E22AE9D1A9AF9FC /* Pods-JMReactiveCocoaDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JMReactiveCocoaDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JMReactiveCocoaDemoTests/Pods-JMReactiveCocoaDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4559CA4795D4609CEB7A9BB0 /* libPods-JMReactiveCocoaDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JMReactiveCocoaDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BE8A316C1495ED3454DBE35 /* Pods-JMReactiveCocoaDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JMReactiveCocoaDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-JMReactiveCocoaDemo/Pods-JMReactiveCocoaDemo.release.xcconfig"; sourceTree = "<group>"; };
+		976F92EA6C79AEFB866E6912 /* Pods-JMReactiveCocoaDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JMReactiveCocoaDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JMReactiveCocoaDemo/Pods-JMReactiveCocoaDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		B9D6602F8575815ED8EF0B7B /* Pods-JMReactiveCocoaDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JMReactiveCocoaDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JMReactiveCocoaDemoTests/Pods-JMReactiveCocoaDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		D0110F2E1B1C50FD00AAE584 /* FilterCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCtrl.h; sourceTree = "<group>"; };
 		D0110F2F1B1C50FD00AAE584 /* FilterCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCtrl.m; sourceTree = "<group>"; };
 		D0110F301B1C50FD00AAE584 /* FilterCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCtrl.xib; sourceTree = "<group>"; };
@@ -114,6 +117,7 @@
 		D0D582461AC1340700AB0117 /* JMReactiveCocoaDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMReactiveCocoaDemoTests.m; sourceTree = "<group>"; };
 		D0FF25D81AC5070E00AFDA05 /* Apple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Apple.h; sourceTree = "<group>"; };
 		D0FF25D91AC5070E00AFDA05 /* Apple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Apple.m; sourceTree = "<group>"; };
+		EC5A0F89A3C5256A9728D189 /* libPods-JMReactiveCocoaDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JMReactiveCocoaDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA3DAADE74DFD8A5BEFB1952 /* libPods.a in Frameworks */,
+				8CB81E3F56CE58EE0CC9DDD7 /* libPods-JMReactiveCocoaDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,27 +133,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C03E48A77CCD8086E9B8A574 /* libPods-JMReactiveCocoaDemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7AA0328E7E33E97BD90642F5 /* Frameworks */ = {
+		468E79C486774E39499B12AA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1544D62FA998B2C9456E3699 /* libPods.a */,
+				976F92EA6C79AEFB866E6912 /* Pods-JMReactiveCocoaDemo.debug.xcconfig */,
+				5BE8A316C1495ED3454DBE35 /* Pods-JMReactiveCocoaDemo.release.xcconfig */,
+				0205DA818E22AE9D1A9AF9FC /* Pods-JMReactiveCocoaDemoTests.debug.xcconfig */,
+				B9D6602F8575815ED8EF0B7B /* Pods-JMReactiveCocoaDemoTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		61E92D1C1216C177C5204B9F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4559CA4795D4609CEB7A9BB0 /* libPods-JMReactiveCocoaDemo.a */,
+				EC5A0F89A3C5256A9728D189 /* libPods-JMReactiveCocoaDemoTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A3AFA9E6EE482C939E378013 /* Pods */ = {
+		A934AEE11D6700DD004ECDBD /* Command */ = {
 			isa = PBXGroup;
 			children = (
-				2AA5E515FA9E59C259058117 /* Pods.debug.xcconfig */,
-				6781E5205AF9E89BE886C1B4 /* Pods.release.xcconfig */,
+				D09A16791AC8E8D00010F4AC /* CommandCtrl.h */,
+				D09A167A1AC8E8D00010F4AC /* CommandCtrl.m */,
+				D09A167B1AC8E8D00010F4AC /* CommandCtrl.xib */,
+				D09A16801AC8EA290010F4AC /* SubscribeViewModel.h */,
+				D09A16811AC8EA290010F4AC /* SubscribeViewModel.m */,
 			);
-			name = Pods;
+			name = Command;
 			sourceTree = "<group>";
 		};
 		D0D5821E1AC1340700AB0117 = {
@@ -159,8 +179,8 @@
 				D0D582291AC1340700AB0117 /* JMReactiveCocoaDemo */,
 				D0D582431AC1340700AB0117 /* JMReactiveCocoaDemoTests */,
 				D0D582281AC1340700AB0117 /* Products */,
-				A3AFA9E6EE482C939E378013 /* Pods */,
-				7AA0328E7E33E97BD90642F5 /* Frameworks */,
+				468E79C486774E39499B12AA /* Pods */,
+				61E92D1C1216C177C5204B9F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,9 +202,7 @@
 				D0FF25D91AC5070E00AFDA05 /* Apple.m */,
 				D0CB59AF1B0DDFE5003689F5 /* Blah.h */,
 				D0CB59B01B0DDFE5003689F5 /* Blah.m */,
-				D09A16791AC8E8D00010F4AC /* CommandCtrl.h */,
-				D09A167A1AC8E8D00010F4AC /* CommandCtrl.m */,
-				D09A167B1AC8E8D00010F4AC /* CommandCtrl.xib */,
+				A934AEE11D6700DD004ECDBD /* Command */,
 				D0B206B31ACCDEBB00FCD638 /* RACDelegateCtrl.h */,
 				D0B206B41ACCDEBB00FCD638 /* RACDelegateCtrl.m */,
 				D0B206B51ACCDEBB00FCD638 /* RACDelegateCtrl.xib */,
@@ -218,8 +236,6 @@
 				D0110F3B1B1C52F400AAE584 /* SubjectCtrl.h */,
 				D0110F3C1B1C52F400AAE584 /* SubjectCtrl.m */,
 				D0110F3D1B1C52F400AAE584 /* SubjectCtrl.xib */,
-				D09A16801AC8EA290010F4AC /* SubscribeViewModel.h */,
-				D09A16811AC8EA290010F4AC /* SubscribeViewModel.m */,
 				D0D5822A1AC1340700AB0117 /* Supporting Files */,
 				D06BDBAB1B1850A8007735A7 /* TableController.h */,
 				D06BDBAC1B1850A8007735A7 /* TableController.m */,
@@ -263,11 +279,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0D5824A1AC1340700AB0117 /* Build configuration list for PBXNativeTarget "JMReactiveCocoaDemo" */;
 			buildPhases = (
-				64CFE107D1A674131378A214 /* Check Pods Manifest.lock */,
+				37471261FEEFDD24430CB1B0 /* [CP] Check Pods Manifest.lock */,
 				D0D582231AC1340700AB0117 /* Sources */,
 				D0D582241AC1340700AB0117 /* Frameworks */,
 				D0D582251AC1340700AB0117 /* Resources */,
-				8F30AD2671DEA179D0BE34E4 /* Copy Pods Resources */,
+				A77EDE26E45FAE75C38C9994 /* [CP] Embed Pods Frameworks */,
+				48017405A4C2C57FF0F1234D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -282,9 +299,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0D5824D1AC1340700AB0117 /* Build configuration list for PBXNativeTarget "JMReactiveCocoaDemoTests" */;
 			buildPhases = (
+				1097D58492F81F17CA314762 /* [CP] Check Pods Manifest.lock */,
 				D0D5823C1AC1340700AB0117 /* Sources */,
 				D0D5823D1AC1340700AB0117 /* Frameworks */,
 				D0D5823E1AC1340700AB0117 /* Resources */,
+				F51D1CFD527576CC6572DEEE /* [CP] Embed Pods Frameworks */,
+				69BA0C12506D027403E98140 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -364,14 +384,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		64CFE107D1A674131378A214 /* Check Pods Manifest.lock */ = {
+		1097D58492F81F17CA314762 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,19 +399,79 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8F30AD2671DEA179D0BE34E4 /* Copy Pods Resources */ = {
+		37471261FEEFDD24430CB1B0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		48017405A4C2C57FF0F1234D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JMReactiveCocoaDemo/Pods-JMReactiveCocoaDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69BA0C12506D027403E98140 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JMReactiveCocoaDemoTests/Pods-JMReactiveCocoaDemoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A77EDE26E45FAE75C38C9994 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JMReactiveCocoaDemo/Pods-JMReactiveCocoaDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F51D1CFD527576CC6572DEEE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JMReactiveCocoaDemoTests/Pods-JMReactiveCocoaDemoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -532,7 +612,7 @@
 		};
 		D0D5824B1AC1340700AB0117 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AA5E515FA9E59C259058117 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 976F92EA6C79AEFB866E6912 /* Pods-JMReactiveCocoaDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JMReactiveCocoaDemo/Info.plist;
@@ -543,7 +623,7 @@
 		};
 		D0D5824C1AC1340700AB0117 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6781E5205AF9E89BE886C1B4 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 5BE8A316C1495ED3454DBE35 /* Pods-JMReactiveCocoaDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JMReactiveCocoaDemo/Info.plist;
@@ -554,6 +634,7 @@
 		};
 		D0D5824E1AC1340700AB0117 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0205DA818E22AE9D1A9AF9FC /* Pods-JMReactiveCocoaDemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -573,6 +654,7 @@
 		};
 		D0D5824F1AC1340700AB0117 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9D6602F8575815ED8EF0B7B /* Pods-JMReactiveCocoaDemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

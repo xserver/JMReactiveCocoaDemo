@@ -35,6 +35,27 @@
     [super viewDidLoad];
 
     
+    [self observeNameChange];
+    
+    [self bindTipsLabelColorSignal];
+    
+    [self loginButtonEnableEvent];
+}
+
+- (void)bindTipsLabelColorSignal {
+    
+    //  改变一个 signal 的返回，string -> Color
+    RACSignal *colorSignal = [_nameTextField.rac_textSignal map:^id(NSString *text) {
+        
+        UIColor *color = (text.length > 3) ? [UIColor purpleColor] : [UIColor redColor];
+        return color;
+    }];
+    
+    RAC(_tipsLabel, textColor) = colorSignal;
+}
+
+- (void)observeNameChange {
+    
     [_nameTextField.rac_textSignal subscribeNext:^(NSString *text){
         if (text.length < 3) {
             _tipsLabel.text = @"ID 长度要 > 3";
@@ -42,34 +63,26 @@
             _tipsLabel.text = @"ID 长度满足";
         }
     }];
-    
-    //  改变一个 signal 的返回，string -> Color
-    RACSignal *colorSignal = [_nameTextField.rac_textSignal map:^id(NSString *text) {
-        UIColor *color = (text.length > 3) ? [UIColor greenColor] : [UIColor redColor];
-        
-        return color;
-    }];
-    RAC(_tipsLabel, textColor) = colorSignal;
-    
+}
 
+- (void)loginButtonEnableEvent {
+    
     self.loginButton.enabled = NO;
+    
     RAC(self.loginButton, enabled) =
-        [RACSignal combineLatest:@[self.nameTextField.rac_textSignal,
-                                   self.pwdTextField.rac_textSignal,
-                                //RACObserve(LoginManager.sharedManager, loggingIn),
-                                //RACObserve(self, loggedIn)
-                                ]
-                          reduce:^(NSString *name, NSString *password) {
-     
-                              //    所有 signal 有值，才会执行，是一个 && 操作，button 比较能体现
-                              //    每个 signal 监听一个属性，
-                              //    name 来至 nameTextField.rac_textSignal.text
-
-                           id enabled = @(name.length > 0 && password.length > 0);
-                           
-                           //  返回给 self.loginButton.enabled, 控制按钮的 enabled 属性
-                           return enabled;
-                       }];
+    [RACSignal combineLatest:@[self.nameTextField.rac_textSignal,
+                               self.pwdTextField.rac_textSignal,
+                               //RACObserve(LoginManager.sharedManager, loggingIn),
+                               //RACObserve(self, loggedIn)
+                               ]
+                      reduce:^(NSString *name, NSString *pwd) {
+                          
+                          //    name <== nameTextField.rac_textSignal.text
+                          //    pwd  <==  pwdTextField.rac_textSignal.text
+                          //  返回给 self.loginButton.enabled, 控制按钮的 enabled 属性
+                          id enabled = @(name.length > 3 && pwd.length > 3);
+                          return enabled;
+                      }];
 }
 
 
