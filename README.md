@@ -7,10 +7,15 @@
 
 ### 函数编程的『文化』
 map      修改，重映射
+
 filter   过滤、拦截
+
 combine  &&  =>  A && B && C => 合成D
+
 merge    ||  =>  A || B || C => 合成D
+
 chaining 串联
+
 flatten
 
 map, filter, fold/reduce
